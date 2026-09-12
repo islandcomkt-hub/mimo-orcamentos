@@ -525,6 +525,15 @@
   }
   @media print{.quote-stepper,.sticky-summary,.step-actions,.internal-card,.internal-panel{display:none!important}.quote-step{display:none!important}.quote-step[data-step="4"]{display:block!important}.customer-quote-card{border:0!important;padding:0!important}.customer-label{display:none!important}}
 
+
+
+  /* V5 • Pedidos, financeiro e criação de arte */
+  .art-box{margin-top:12px}.art-config{display:grid;gap:8px;margin-top:10px}.art-row{display:grid;grid-template-columns:minmax(150px,1fr) 92px 110px;gap:8px;align-items:center;background:#fff;border:1px solid #e7edf3;border-radius:13px;padding:10px}.art-row strong{color:var(--navy);font-size:13px}.art-row small{display:block;color:var(--muted);margin-top:2px}.art-row input{padding:8px}.art-fee{font-weight:900;color:var(--teal);text-align:right}
+  .section-head-row{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.order-filters{display:grid;grid-template-columns:1fr 190px;gap:10px;margin:16px 0}.orders-list,.finance-sales-list{display:grid;gap:10px}.order-card{border:1px solid #e3eaf0;border-radius:16px;padding:14px;background:#fff}.order-card.sale{border-left:5px solid var(--green)}.order-card.quote{border-left:5px solid var(--yellow)}.order-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.order-title{font-weight:950;color:var(--navy)}.order-meta{font-size:12px;color:var(--muted);margin-top:4px}.order-money{font-size:18px;font-weight:950;color:var(--navy);white-space:nowrap}.order-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.order-badge{font-size:10px;font-weight:900;padding:5px 8px;border-radius:999px;background:#eef4f9;color:var(--navy)}.order-card.sale .order-badge.status{background:#eaf8f1;color:#13784c}.order-card.quote .order-badge.status{background:#fff4dd;color:#9a5e00}.order-actions{margin-top:10px!important}.order-actions .btn{padding:8px 10px;font-size:12px}.empty-state{padding:28px 14px;text-align:center;border:1px dashed #d8e1e9;border-radius:16px;color:var(--muted)}
+  .finance-hero{border-top:5px solid var(--teal)}.month-picker{max-width:170px}.finance-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.finance-kpi{background:#fff;border:1px solid #e4ebf1;border-radius:15px;padding:14px}.finance-kpi span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:850}.finance-kpi strong{display:block;font-size:22px;color:var(--navy);margin-top:4px}.finance-kpi small{display:block;color:var(--muted);margin-top:3px}.finance-sale-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-bottom:1px dashed #dfe6ec}.finance-sale-row:last-child{border-bottom:0}.finance-sale-row strong{color:var(--navy)}
+  @media(max-width:1000px){.app-tabs{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}.config-tab .config-label{display:inline!important}.finance-kpis{grid-template-columns:repeat(2,1fr)}.order-filters{grid-template-columns:1fr}.section-head-row{align-items:center}}
+  @media(max-width:620px){.art-row{grid-template-columns:1fr 82px}.art-fee{grid-column:span 2;text-align:left}.finance-kpis{grid-template-columns:1fr 1fr}.finance-kpi strong{font-size:18px}.section-head-row{display:block}.section-head-row .btn,.month-picker{margin-top:10px;width:100%;max-width:none}.order-top{display:block}.order-money{margin-top:8px}.order-actions{display:grid;grid-template-columns:1fr 1fr}.order-actions .btn{width:100%}}
+
 </style>
 </head>
 <body>
@@ -536,6 +545,8 @@
     </div>
     <nav class="app-tabs">
       <button class="nav-btn active" data-page="orcamento"><span>Orçamento</span></button>
+      <button class="nav-btn" data-page="pedidos"><span>Pedidos</span></button>
+      <button class="nav-btn" data-page="financeiro"><span>Financeiro</span></button>
       <button class="nav-btn" data-page="kits"><span>Kits</span></button>
       <button class="nav-btn" data-page="produtos"><span>Produtos</span></button>
       <button class="nav-btn config-tab" data-page="config" aria-label="Configurações"><span class="gear">⚙</span><span class="config-label">Configurações</span></button>
@@ -586,11 +597,16 @@
           </div>
           <div class="products" id="quoteItems"></div>
           <div class="personalization-box">
-            <div class="subhead"><strong>Personalização</strong><span>preencha depois de definir os produtos</span></div>
+            <div class="subhead"><strong>Personalização</strong><span>nome e idade do aniversariante</span></div>
             <div class="form-grid compact-fields">
               <div class="field half"><label>Nome</label><input id="childName" placeholder="Ex.: Laura"></div>
               <div class="field half"><label>Idade</label><input id="childAge" placeholder="Ex.: 2 anos"></div>
             </div>
+          </div>
+          <div class="personalization-box art-box">
+            <div class="subhead"><strong>Artes do pedido</strong><span>interno • não aparece no orçamento do cliente</span></div>
+            <div id="artConfig" class="art-config"></div>
+            <div class="notice mini-notice">Cada família de arte inclui até <strong>2 variações</strong> por uma cobrança interna. Pote Mimo + Cofrinho compartilham a mesma família. A 3ª variação abre um novo bloco de criação.</div>
           </div>
           <div class="notice mini-notice">Apresente primeiro a versão completa. “Sem doce” ou “sem 3D” ficam como alternativa de negociação, não como escolha inicial.</div>
           <div class="step-actions"><button class="btn soft prev-step" data-prev-step="1">Voltar</button><button class="btn primary next-step" data-next-step="3">Continuar</button></div>
@@ -636,12 +652,13 @@
               <div class="result-kpi sale"><span>Preço do pedido</span><strong id="resultSale">R$ 0,00</strong><small>valor final ao cliente</small></div>
               <div class="result-kpi cost"><span>Desembolso real</span><strong id="resultCost">R$ 0,00</strong><small>material + doces</small></div>
               <div class="result-kpi margin"><span>Lucro sobre custo</span><strong id="resultMargin">0%</strong><small id="resultMarginLabel">Aguardando itens</small></div>
-              <div class="result-kpi discount"><span>Desconto máximo</span><strong id="resultMaxDiscount">0%</strong><small>preservando 25% mínimo</small></div>
+              <div class="result-kpi discount"><span>Desconto máximo</span><strong id="resultMaxDiscount">0%</strong><small>preservando 30% mínimo</small></div>
             </div>
             <div class="internal-details">
               <div class="summary-row"><span>Preço de tabela / ideal</span><strong id="baseTotal">R$ 0,00</strong></div>
               <div class="summary-row"><span>Material + doces</span><strong id="directCost">R$ 0,00</strong></div>
-              <div class="summary-row"><span>Mão de obra • remuneração de vocês</span><strong id="laborCost">R$ 0,00</strong></div>
+              <div class="summary-row"><span>Mão de obra de montagem</span><strong id="laborCost">R$ 0,00</strong></div>
+              <div class="summary-row"><span>Criação de arte • remuneração</span><strong id="artCost">R$ 0,00</strong></div>
               <div class="summary-row"><span>Reserva operacional</span><strong id="reserveCost">R$ 0,00</strong></div>
               <div class="summary-row"><span>Custo econômico completo</span><strong id="fullCost">R$ 0,00</strong></div>
               <div class="summary-row"><span>Lucro empresarial</span><strong id="businessProfit">R$ 0,00</strong></div>
@@ -651,6 +668,12 @@
               <div class="hidden-health"><span id="currentMargin">0%</span><span id="idealPrice">R$ 0,00</span><span id="minPrice">R$ 0,00</span></div>
             </div>
             <div id="marginStatus" class="status warn">Adicione produtos para calcular.</div>
+            <div class="toolbar order-actions">
+              <button class="btn secondary" id="saveQuote">Salvar orçamento</button>
+              <button class="btn primary" id="saveSale">Confirmar venda</button>
+              <button class="btn soft" id="newQuote">Novo orçamento</button>
+            </div>
+            <div id="editingNotice" class="small muted" style="display:none;margin-top:8px"></div>
           </div>
 
           <div class="customer-quote-card">
@@ -667,6 +690,47 @@
         </div>
       </div>
     </section>
+    <section id="pedidos" class="page">
+      <div class="grid">
+        <div class="card span-12">
+          <div class="section-head-row">
+            <div><h2>Pedidos e orçamentos</h2><p class="muted">Tudo fica salvo neste aparelho. Edite, corrija, confirme ou exclua sem alterar os números antigos por engano.</p></div>
+            <button class="btn primary" id="ordersNewQuote">+ Novo orçamento</button>
+          </div>
+          <div class="order-filters">
+            <input id="orderSearch" placeholder="Buscar cliente, tema ou WhatsApp">
+            <select id="orderStatusFilter"><option value="all">Todos</option><option value="quote">Orçamentos</option><option value="sale">Vendas fechadas</option></select>
+          </div>
+          <div id="ordersList" class="orders-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="financeiro" class="page">
+      <div class="grid">
+        <div class="card span-12 finance-hero">
+          <div class="section-head-row">
+            <div><h2>Painel mensal</h2><p class="muted">Atualiza automaticamente quando uma venda é confirmada, editada ou removida.</p></div>
+            <input type="month" id="financeMonth" class="month-picker">
+          </div>
+          <div class="finance-kpis">
+            <div class="finance-kpi"><span>Faturamento</span><strong id="finRevenue">R$ 0,00</strong><small>vendas fechadas</small></div>
+            <div class="finance-kpi"><span>Gasto real</span><strong id="finExpense">R$ 0,00</strong><small>material + recheio</small></div>
+            <div class="finance-kpi"><span>Lucro empresarial</span><strong id="finProfit">R$ 0,00</strong><small>depois dos custos</small></div>
+            <div class="finance-kpi"><span>Ganho disponível</span><strong id="finOwnerGain">R$ 0,00</strong><small>trabalho + lucro disponível</small></div>
+            <div class="finance-kpi"><span>Clientes</span><strong id="finClients">0</strong><small>clientes únicos</small></div>
+            <div class="finance-kpi"><span>Pedidos</span><strong id="finOrders">0</strong><small>vendas no mês</small></div>
+            <div class="finance-kpi"><span>Ticket médio</span><strong id="finTicket">R$ 0,00</strong><small>por pedido</small></div>
+            <div class="finance-kpi"><span>Reserva de caixa</span><strong id="finCash">R$ 0,00</strong><small>30% do lucro</small></div>
+          </div>
+        </div>
+        <div class="card span-12">
+          <h3>Vendas do mês</h3>
+          <div id="financeSalesList" class="finance-sales-list"></div>
+        </div>
+      </div>
+    </section>
+
     <section id="kits" class="page">
       <div class="card span-12">
         <h2>3 kits públicos + Mega Kit</h2>
@@ -690,7 +754,8 @@
         <div class="card span-6">
           <h2>Custos operacionais</h2>
           <div class="form-grid">
-            <div class="field half"><label>Preparação / arte por pedido (R$)</label><input type="number" step="0.01" id="setupLabor"></div>
+            <div class="field half"><label>Criação de arte / família (R$)</label><input type="number" step="0.01" id="artFee"></div>
+            <div class="field half"><label>Variações incluídas / cobrança</label><input type="number" step="1" min="1" id="artVariantsIncluded"></div>
             <div class="field half"><label>Recheio padrão / item (R$)</label><input type="number" step="0.01" id="sweetStandard"></div>
             <div class="field half"><label>Recheio Pote Mimo / item (R$)</label><input type="number" step="0.01" id="sweetPot"></div>
             <div class="field half"><label>Reserva operacional (%)</label><input type="number" step="0.1" id="reservePct"></div>
@@ -705,13 +770,13 @@
             <div class="field half"><label>Desconto padrão (%)</label><input type="number" step="0.5" id="normalDiscount"></div>
             <div class="field half"><label>Limite estratégico de desconto (%)</label><input type="number" step="0.5" id="strategicDiscount"></div>
           </div>
-          <div class="notice" style="margin-top:14px">O app usa o preço de venda de cada produto como referência e confere o custo econômico completo por trás. Meta padrão: 45% de lucro sobre o custo. O desconto começa em 0% e nunca pode levar o lucro abaixo de 25%.</div>
+          <div class="notice" style="margin-top:14px">O app usa o preço de venda de cada produto como referência e confere o custo econômico completo por trás. Meta padrão: 45% de lucro sobre o custo. O desconto começa em 0% e nunca pode levar o lucro abaixo de 30%.</div>
         </div>
         <div class="card span-12">
           <h2>Regra financeira</h2>
           <div class="kpi-grid">
             <div class="kpi"><span>Lucro ideal / custo</span><strong id="kpiTarget">45%</strong></div>
-            <div class="kpi"><span>Lucro mínimo / custo</span><strong id="kpiMin">25%</strong></div>
+            <div class="kpi"><span>Lucro mínimo / custo</span><strong id="kpiMin">30%</strong></div>
             <div class="kpi"><span>Lucro reservado para caixa</span><strong id="kpiCash">30%</strong></div>
             <div class="kpi"><span>Entrada recomendada</span><strong>50%</strong></div>
           </div>
@@ -735,61 +800,93 @@
 const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
 const fmt = n => BRL.format(Number(n||0));
 const pct = n => `${Number(n||0).toFixed(1).replace('.',',')}%`;
-const uid = () => Math.random().toString(36).slice(2,9);
+const uid = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2,8)}`;
 const money = n => Math.round((Number(n||0)+Number.EPSILON)*100)/100;
-const DATA_VERSION = 5;
+const clone = v => JSON.parse(JSON.stringify(v));
+const DATA_VERSION = 6;
 
 const DEFAULT_SETTINGS = {
-  setupLabor:12,
+  artFee:10,
+  artVariantsIncluded:2,
   sweetStandard:1.65,
   sweetPot:3.20,
   reservePct:5,
   cashProfitReservePct:30,
   targetMarkup:45,
-  minMarkup:25,
+  minMarkup:30,
   normalDiscount:0,
   strategicDiscount:8
 };
 
 const DEFAULT_PRODUCTS = [
-  {id:'pote3d',name:'Pote Mimo com topo 3D',cost:13.00,labor:3.00,price:29.90,minQty:5,sweet:'pot',hero:true},
-  {id:'pote',name:'Pote Mimo sem 3D',cost:10.00,labor:3.00,price:24.90,minQty:5,sweet:'pot'},
-  {id:'cofrinho',name:'Pote Cofrinho',cost:4.50,labor:2.50,price:12.90,minQty:5,sweet:'standard'},
-  {id:'sacolinha',name:'Sacolinha',cost:3.00,labor:2.50,price:10.90,minQty:5,sweet:'standard'},
-  {id:'maleta',name:'Maletinha',cost:3.00,labor:2.50,price:10.90,minQty:5,sweet:'standard'},
-  {id:'milk',name:'Caixa Milk',cost:3.00,labor:2.50,price:10.90,minQty:5,sweet:'standard'},
-  {id:'piramide',name:'Pirâmide',cost:3.00,labor:2.50,price:10.90,minQty:5,sweet:'standard'}
+  {id:'pote3d',name:'Pote Mimo com topo 3D',cost:6.70,labor:3.00,price:19.90,minQty:5,sweet:'pot',hero:true,artFamily:'potes'},
+  {id:'pote',name:'Pote Mimo sem 3D',cost:5.20,labor:3.00,price:16.90,minQty:5,sweet:'pot',artFamily:'potes'},
+  {id:'cofrinho',name:'Pote Cofrinho',cost:4.20,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'potes'},
+  {id:'sacolinha',name:'Sacolinha',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'sacolinha'},
+  {id:'maleta',name:'Maletinha',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'maleta'},
+  {id:'milk',name:'Caixa Milk',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'milk'},
+  {id:'piramide',name:'Pirâmide',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'piramide'}
 ];
 
 const DEFAULT_KITS = [
-  {id:'essencial',name:'Mimo Essencial',price:129,featured:false,desc:'10 lembrancinhas • todos os modelos',items:[
+  {id:'essencial',name:'Mimo Essencial',price:169,featured:false,desc:'10 lembrancinhas • todos os modelos',items:[
     {productId:'sacolinha',qty:2},{productId:'maleta',qty:2},{productId:'milk',qty:2},{productId:'piramide',qty:2},{productId:'cofrinho',qty:2}
   ]},
-  {id:'festa',name:'Mimo Festa',price:279,featured:true,desc:'15 peças • Pote Mimo 3D já entra aqui',items:[
+  {id:'festa',name:'Mimo Festa',price:269,featured:true,desc:'15 peças • Pote Mimo 3D já entra aqui',items:[
     {productId:'sacolinha',qty:2},{productId:'maleta',qty:2},{productId:'milk',qty:2},{productId:'piramide',qty:2},{productId:'cofrinho',qty:2},{productId:'pote3d',qty:5}
   ]},
-  {id:'completo',name:'Mimo Completo',price:399,featured:false,desc:'25 peças • composição completa',items:[
+  {id:'completo',name:'Mimo Completo',price:389,featured:false,desc:'25 peças • composição completa',items:[
     {productId:'sacolinha',qty:4},{productId:'maleta',qty:4},{productId:'milk',qty:4},{productId:'piramide',qty:4},{productId:'cofrinho',qty:4},{productId:'pote3d',qty:5}
   ]}
 ];
 
-function clone(v){return JSON.parse(JSON.stringify(v))}
-function resetFinancialDataForVersion(){
-  localStorage.setItem('mimo_data_version',String(DATA_VERSION));
-  localStorage.setItem('mimo_settings',JSON.stringify(DEFAULT_SETTINGS));
-  localStorage.setItem('mimo_products',JSON.stringify(DEFAULT_PRODUCTS));
-  localStorage.setItem('mimo_kits',JSON.stringify(DEFAULT_KITS));
-}
-if(Number(localStorage.getItem('mimo_data_version')||0)!==DATA_VERSION) resetFinancialDataForVersion();
+const ART_LABELS = {potes:'Pote Mimo + Cofrinho',sacolinha:'Sacolinha',maleta:'Maletinha',milk:'Caixa Milk',piramide:'Pirâmide'};
 
-let settings = JSON.parse(localStorage.getItem('mimo_settings')||'null') || {...DEFAULT_SETTINGS};
+function migrateDefaults(){
+  const oldVersion=Number(localStorage.getItem('mimo_data_version')||0);
+  if(oldVersion!==DATA_VERSION){
+    localStorage.setItem('mimo_data_version',String(DATA_VERSION));
+    localStorage.setItem('mimo_settings',JSON.stringify(DEFAULT_SETTINGS));
+    localStorage.setItem('mimo_products',JSON.stringify(DEFAULT_PRODUCTS));
+    localStorage.setItem('mimo_kits',JSON.stringify(DEFAULT_KITS));
+  }
+}
+migrateDefaults();
+
+let settings = JSON.parse(localStorage.getItem('mimo_settings')||'null') || clone(DEFAULT_SETTINGS);
 let products = JSON.parse(localStorage.getItem('mimo_products')||'null') || clone(DEFAULT_PRODUCTS);
 let kits = JSON.parse(localStorage.getItem('mimo_kits')||'null') || clone(DEFAULT_KITS);
+let orders = JSON.parse(localStorage.getItem('mimo_orders')||'[]');
 let quoteItems = [];
+let artVariations = {};
 let kitOverridePrice = null;
+let editingOrderId = null;
+let currentQuoteStep = 1;
 
 function productById(id){return products.find(p=>p.id===id)}
 function sweetCostFor(p){return p.sweet==='pot'?settings.sweetPot:settings.sweetStandard}
+function artFamilyFor(p){return p.artFamily || p.id}
+function artLabel(family){
+  if(ART_LABELS[family]) return ART_LABELS[family];
+  const p=products.find(x=>artFamilyFor(x)===family); return p?p.name:'Arte personalizada';
+}
+function usedArtFamilies(){
+  const set=[];
+  quoteItems.forEach(i=>{const p=productById(i.productId);if(p&&i.qty>0){const f=artFamilyFor(p);if(!set.includes(f))set.push(f)}});
+  return set;
+}
+function ensureArtDefaults(){usedArtFamilies().forEach(f=>{if(!Number(artVariations[f]))artVariations[f]=2})}
+function artBreakdown(){
+  ensureArtDefaults();
+  const inc=Math.max(1,Number(settings.artVariantsIncluded||2));
+  const fee=Number(settings.artFee||0);
+  const rows=usedArtFamilies().map(f=>{
+    const variations=Math.max(1,Number(artVariations[f]||2));
+    const blocks=Math.ceil(variations/inc);
+    return {family:f,label:artLabel(f),variations,blocks,value:money(blocks*fee)};
+  });
+  return {rows,total:money(rows.reduce((s,r)=>s+r.value,0))};
+}
 
 function calc(){
   let material=0,sweets=0,unitLabor=0,itemSale=0,totalQty=0;
@@ -801,58 +898,56 @@ function calc(){
     itemSale += Number(p.price||0)*i.qty;
     totalQty += i.qty;
   });
-  const direct = material+sweets;
-  const labor = quoteItems.length ? unitLabor + settings.setupLabor : 0;
-  const reserve = direct*(settings.reservePct/100);
-  const full = direct+labor+reserve;
-  const idealPriceRaw = full*(1+settings.targetMarkup/100);
-  const minPrice = full*(1+settings.minMarkup/100);
-  const setupSale = quoteItems.length ? settings.setupLabor*(1+settings.targetMarkup/100) : 0;
-  const catalogPrice = itemSale + setupSale;
-  const automaticPrice = full>0 ? money(Math.max(catalogPrice,Math.ceil(idealPriceRaw))) : 0;
-  const base = kitOverridePrice!=null ? kitOverridePrice : automaticPrice;
-  const businessProfit = base-full;
-  const markup = full>0 ? businessProfit/full*100 : 0;
-  const saleMargin = base>0 ? businessProfit/base*100 : 0;
-  let safePct = base>0 ? Math.max(0,(base-minPrice)/base*100) : 0;
-  safePct = Math.min(safePct,settings.strategicDiscount);
-  const recommended = 0;
-  const cashProfitReserve = Math.max(0,businessProfit)*(settings.cashProfitReservePct/100);
-  const availableProfit = businessProfit-cashProfitReserve;
-  const ownerGain = labor+availableProfit;
-  return {base,material,sweets,direct,unitLabor,labor,itemSale,setupSale,catalogPrice,reserve,full,idealPrice:idealPriceRaw,minPrice,businessProfit,markup,saleMargin,safePct,recommended,cashProfitReserve,availableProfit,ownerGain,totalQty};
+  const art=artBreakdown();
+  const direct=money(material+sweets);
+  const reserve=money(direct*(settings.reservePct/100));
+  const productionCost=money(direct+unitLabor+reserve); // base de produção onde protegemos 30%-45%
+  const labor=money(unitLabor+art.total); // remuneração manual + criação de arte
+  const full=money(productionCost+art.total);
+  const idealPriceRaw=money(productionCost*(1+settings.targetMarkup/100)+art.total);
+  const minPrice=money(productionCost*(1+settings.minMarkup/100)+art.total);
+  const catalogPrice=money(itemSale+art.total);
+  const automaticPrice=productionCost>0?money(Math.max(catalogPrice,idealPriceRaw)):0;
+  const base=kitOverridePrice!=null?Number(kitOverridePrice):automaticPrice;
+  const businessProfit=money(base-full);
+  const markup=productionCost>0?businessProfit/productionCost*100:0;
+  const saleMargin=base>0?businessProfit/base*100:0;
+  let safePct=base>0?Math.max(0,(base-minPrice)/base*100):0;
+  safePct=Math.min(safePct,Number(settings.strategicDiscount||0));
+  const cashProfitReserve=money(Math.max(0,businessProfit)*(settings.cashProfitReservePct/100));
+  const availableProfit=money(businessProfit-cashProfitReserve);
+  const ownerGain=money(labor+availableProfit);
+  return {base,material:money(material),sweets:money(sweets),direct,unitLabor:money(unitLabor),artLabor:art.total,labor,reserve,productionCost,full,idealPrice:idealPriceRaw,minPrice,catalogPrice,businessProfit,markup,saleMargin,safePct,cashProfitReserve,availableProfit,ownerGain,totalQty,artRows:art.rows};
 }
-
 function discountedCalc(discountPct){
-  const c=calc();
-  const d=Math.max(0,Number(discountPct||0));
-  const final=c.base*(1-d/100);
-  const businessProfit=final-c.full;
-  const markup=c.full>0?businessProfit/c.full*100:0;
-  const saleMargin=final>0?businessProfit/final*100:0;
-  const cashProfitReserve=Math.max(0,businessProfit)*(settings.cashProfitReservePct/100);
-  const availableProfit=businessProfit-cashProfitReserve;
-  const ownerGain=c.labor+availableProfit;
+  const c=calc(); const d=Math.max(0,Number(discountPct||0)); const final=money(c.base*(1-d/100));
+  const businessProfit=money(final-c.full); const markup=c.productionCost>0?businessProfit/c.productionCost*100:0; const saleMargin=final>0?businessProfit/final*100:0;
+  const cashProfitReserve=money(Math.max(0,businessProfit)*(settings.cashProfitReservePct/100)); const availableProfit=money(businessProfit-cashProfitReserve); const ownerGain=money(c.labor+availableProfit);
   return {...c,discount:d,final,businessProfit,markup,saleMargin,cashProfitReserve,availableProfit,ownerGain};
 }
 
-function renderProductSelect(){
-  const sel=document.getElementById('productSelect');
-  sel.innerHTML=products.map(p=>`<option value="${p.id}">${p.name} • venda ${fmt(p.price)}</option>`).join('');
-}
+function renderProductSelect(){document.getElementById('productSelect').innerHTML=products.map(p=>`<option value="${p.id}">${p.name} • venda ${fmt(p.price)}</option>`).join('')}
 function renderQuoteItems(){
   const box=document.getElementById('quoteItems');
-  if(!quoteItems.length){box.innerHTML='<div class="muted small" style="padding:12px">Nenhum item adicionado.</div>'; return}
-  box.innerHTML=quoteItems.map((i,idx)=>{const p=productById(i.productId);return `<div class="product-row"><div><div class="name">${p.name}${p.hero?' <span class="tag hero">produto-herói</span>':''}</div><small>Custo ${fmt(p.cost)} • mão de obra ${fmt(p.labor)} • recheio ${fmt(sweetCostFor(p))} • venda ref. ${fmt(p.price)}</small></div><input type="number" min="1" value="${i.qty}" onchange="updateQty(${idx},this.value)"><div class="unit-price">${fmt(p.price)}/un venda</div><div class="line-price"><strong>${fmt(Number(p.price||0)*i.qty)}</strong></div><button class="btn danger" onclick="removeItem(${idx})">×</button></div>`}).join('');
+  if(!quoteItems.length){box.innerHTML='<div class="muted small" style="padding:12px">Nenhum item adicionado.</div>';return}
+  box.innerHTML=quoteItems.map((i,idx)=>{const p=productById(i.productId);if(!p)return'';return `<div class="product-row"><div><div class="name">${p.name}${p.hero?' <span class="tag hero">produto-herói</span>':''}</div><small>Custo ${fmt(p.cost)} • mão de obra ${fmt(p.labor)} • recheio ${fmt(sweetCostFor(p))} • venda ref. ${fmt(p.price)}</small></div><input type="number" min="1" value="${i.qty}" onchange="updateQty(${idx},this.value)"><div class="unit-price">${fmt(p.price)}/un</div><div class="line-price"><strong>${fmt(Number(p.price||0)*i.qty)}</strong></div><button class="btn danger" onclick="removeItem(${idx})">×</button></div>`}).join('');
 }
-window.updateQty=(idx,v)=>{quoteItems[idx].qty=Math.max(1,Number(v||1));kitOverridePrice=null;refresh()}
-window.removeItem=(idx)=>{quoteItems.splice(idx,1);kitOverridePrice=null;refresh()}
+function renderArtConfig(){
+  const box=document.getElementById('artConfig'); ensureArtDefaults(); const families=usedArtFamilies();
+  if(!families.length){box.innerHTML='<div class="muted small">Adicione produtos para o app identificar as famílias de arte.</div>';return}
+  const inc=Math.max(1,Number(settings.artVariantsIncluded||2));
+  box.innerHTML=families.map(f=>{const v=Math.max(1,Number(artVariations[f]||2));const blocks=Math.ceil(v/inc);return `<div class="art-row"><div><strong>${artLabel(f)}</strong><small>${inc} variações por cobrança</small></div><input type="number" min="1" value="${v}" aria-label="Variações ${artLabel(f)}" onchange="setArtVariations('${f}',this.value)"><div class="art-fee">${fmt(blocks*settings.artFee)} • ${blocks} bloco${blocks>1?'s':''}</div></div>`}).join('');
+}
+window.setArtVariations=(family,v)=>{artVariations[family]=Math.max(1,Number(v||1));kitOverridePrice=null;refresh()};
+window.updateQty=(idx,v)=>{quoteItems[idx].qty=Math.max(1,Number(v||1));kitOverridePrice=null;refresh()};
+window.removeItem=(idx)=>{quoteItems.splice(idx,1);kitOverridePrice=null;refresh()};
 
 function refresh(){
-  renderQuoteItems(); const c=calc();
+  renderQuoteItems(); renderArtConfig(); const c=calc();
   document.getElementById('baseTotal').textContent=fmt(c.base);
   document.getElementById('directCost').textContent=fmt(c.direct);
-  document.getElementById('laborCost').textContent=fmt(c.labor);
+  document.getElementById('laborCost').textContent=fmt(c.unitLabor);
+  document.getElementById('artCost').textContent=fmt(c.artLabor);
   document.getElementById('reserveCost').textContent=fmt(c.reserve);
   document.getElementById('fullCost').textContent=fmt(c.full);
   document.getElementById('currentMargin').textContent=pct(c.markup);
@@ -863,123 +958,103 @@ function refresh(){
   document.getElementById('resultCost').textContent=fmt(c.direct);
   document.getElementById('resultMaxDiscount').textContent=pct(c.safePct);
   document.getElementById('stickyCost').textContent=fmt(c.full);
-  const range=document.getElementById('discountRange');
-  range.max=Math.max(0,c.safePct).toFixed(1);
-  if(Number(range.value)>c.safePct) range.value=c.safePct;
-  if(!quoteItems.length) range.value=0;
+  const range=document.getElementById('discountRange'); range.max=Math.max(0,c.safePct).toFixed(1); if(Number(range.value)>c.safePct)range.value=c.safePct; if(!quoteItems.length)range.value=0;
   updateDiscountOutputs();
   const st=document.getElementById('marginStatus');
   if(!c.base){st.className='status warn';st.textContent='Adicione produtos para calcular.'}
-  else if(c.markup+0.05>=settings.targetMarkup){st.className='status good';st.textContent=`Preço saudável: ${pct(c.markup)} de lucro sobre o custo econômico. Meta da Mimo: ${pct(settings.targetMarkup)}.`}
-  else if(c.markup>=settings.minMarkup){st.className='status warn';st.textContent=`Lucro aceitável, mas abaixo da meta: ${pct(c.markup)} sobre o custo. Evite desconto.`}
-  else{st.className='status bad';st.textContent=`Não recomendado: o preço atual gera apenas ${pct(c.markup)} sobre o custo. O mínimo da Mimo é ${pct(settings.minMarkup)}.`}
-  const rLabel=document.getElementById('resultMarginLabel');
-  if(!c.base) rLabel.textContent='Aguardando itens';
-  else if(c.markup+0.05>=settings.targetMarkup) rLabel.textContent='Saudável';
-  else if(c.markup>=settings.minMarkup) rLabel.textContent='Atenção';
-  else rLabel.textContent='Não recomendado';
+  else if(c.markup+0.05>=settings.targetMarkup){st.className='status good';st.textContent=`Preço saudável: ${pct(c.markup)} de lucro sobre o custo produtivo, além da remuneração da criação de arte.`}
+  else if(c.markup>=settings.minMarkup){st.className='status warn';st.textContent=`Lucro aceitável: ${pct(c.markup)} sobre o custo produtivo. Meta: ${pct(settings.targetMarkup)}. Evite desconto.`}
+  else{st.className='status bad';st.textContent=`Não recomendado: ${pct(c.markup)} sobre o custo produtivo. Mínimo da Mimo: ${pct(settings.minMarkup)}.`}
+  const r=document.getElementById('resultMarginLabel'); if(!c.base)r.textContent='Aguardando itens'; else if(c.markup>=settings.targetMarkup)r.textContent='Saudável'; else if(c.markup>=settings.minMarkup)r.textContent='Atenção'; else r.textContent='Não recomendado';
   renderQuotePreview();
 }
-
 function updateDiscountOutputs(){
-  const d=Number(document.getElementById('discountRange').value||0);
-  const x=discountedCalc(d);
-  document.getElementById('discountPct').textContent=pct(d);
-  document.getElementById('discountedPrice').textContent=fmt(x.final);
-  document.getElementById('contribution').textContent=fmt(x.businessProfit);
-  document.getElementById('afterMargin').textContent=pct(x.markup);
-  document.getElementById('resultSale').textContent=fmt(x.final);
-  document.getElementById('resultMargin').textContent=pct(x.markup);
-  document.getElementById('businessProfit').textContent=fmt(x.businessProfit);
-  document.getElementById('cashProfitReserve').textContent=fmt(x.cashProfitReserve);
-  document.getElementById('availableProfit').textContent=fmt(x.availableProfit);
-  document.getElementById('ownerGain').textContent=fmt(x.ownerGain);
-  document.getElementById('stickySale').textContent=fmt(x.final);
-  document.getElementById('stickyMargin').textContent=pct(x.markup);
-  renderQuotePreview();
+  const x=discountedCalc(document.getElementById('discountRange').value||0);
+  document.getElementById('discountPct').textContent=pct(x.discount); document.getElementById('discountedPrice').textContent=fmt(x.final); document.getElementById('contribution').textContent=fmt(x.businessProfit); document.getElementById('afterMargin').textContent=pct(x.markup);
+  document.getElementById('resultSale').textContent=fmt(x.final); document.getElementById('resultMargin').textContent=pct(x.markup); document.getElementById('businessProfit').textContent=fmt(x.businessProfit); document.getElementById('cashProfitReserve').textContent=fmt(x.cashProfitReserve); document.getElementById('availableProfit').textContent=fmt(x.availableProfit); document.getElementById('ownerGain').textContent=fmt(x.ownerGain); document.getElementById('stickySale').textContent=fmt(x.final); document.getElementById('stickyMargin').textContent=pct(x.markup); renderQuotePreview();
 }
-
 function renderQuotePreview(){
-  const d=Number(document.getElementById('discountRange').value||0); const x=discountedCalc(d);
-  const name=document.getElementById('clientName').value.trim()||'cliente'; const theme=document.getElementById('theme').value.trim(); const childName=document.getElementById('childName').value.trim(); const childAge=document.getElementById('childAge').value.trim(); const pers=[childName,childAge].filter(Boolean).join(' • '); const date=document.getElementById('eventDate').value; const delivery=document.getElementById('delivery').value.trim(); const notes=document.getElementById('notes').value.trim();
-  const itemLines=quoteItems.map(i=>{const p=productById(i.productId);return `• ${i.qty}x ${p.name}`}).join('\n');
-  const discountLine=d>0?`\nValor de tabela: ${fmt(x.base)}\nCondição especial: ${fmt(x.final)} (${pct(d)} de desconto)`: `\nValor: ${fmt(x.final)}`;
+  const x=discountedCalc(document.getElementById('discountRange').value||0); const name=document.getElementById('clientName').value.trim()||'cliente'; const theme=document.getElementById('theme').value.trim(); const childName=document.getElementById('childName').value.trim(); const childAge=document.getElementById('childAge').value.trim(); const pers=[childName,childAge].filter(Boolean).join(' • '); const date=document.getElementById('eventDate').value; const delivery=document.getElementById('delivery').value.trim(); const notes=document.getElementById('notes').value.trim();
+  const itemLines=quoteItems.map(i=>{const p=productById(i.productId);return p?`• ${i.qty}x ${p.name}`:''}).filter(Boolean).join('\n');
+  const discountLine=x.discount>0?`\nValor de tabela: ${fmt(x.base)}\nCondição especial: ${fmt(x.final)} (${pct(x.discount)} de desconto)`: `\nValor: ${fmt(x.final)}`;
   const themeLine=theme?`\nTema: ${theme}`:''; const persLine=pers?`\nPersonalização: ${pers}`:''; const dateLine=date?`\nData da festa: ${new Date(date+'T12:00:00').toLocaleDateString('pt-BR')}`:''; const deliveryLine=delivery?`\nEntrega/retirada: ${delivery}`:'';
-  const text=`Oi, ${name}! 🧡\n\nSegue seu orçamento Mimo de Festa:${themeLine}${persLine}${dateLine}\n\n${itemLines||'• Itens a definir'}\n\n✓ Personalizados\n✓ Recheio incluso\n✓ Entregues montados e prontos para a festa${discountLine}\n\nPagamento: ${document.getElementById('paymentCondition').value}\nValidade do orçamento: ${document.getElementById('validity').value} dias${deliveryLine}${notes?`\n\nObservações: ${notes}`:''}\n\nSe estiver tudo certo, me confirma que já seguimos com os próximos detalhes da personalização. ✨`;
-  document.getElementById('quotePreview').textContent=text;
+  document.getElementById('quotePreview').textContent=`Oi, ${name}! 🧡\n\nSegue seu orçamento Mimo de Festa:${themeLine}${persLine}${dateLine}\n\n${itemLines||'• Itens a definir'}\n\n✓ Personalizados\n✓ Recheio incluso\n✓ Entregues montados e prontos para a festa${discountLine}\n\nPagamento: ${document.getElementById('paymentCondition').value}\nValidade do orçamento: ${document.getElementById('validity').value} dias${deliveryLine}${notes?`\n\nObservações: ${notes}`:''}\n\nSe estiver tudo certo, me confirma que já seguimos com os próximos detalhes da personalização. ✨`;
 }
 
-function kitFinancials(k){
-  const oldItems=quoteItems, oldOverride=kitOverridePrice;
-  quoteItems=clone(k.items); kitOverridePrice=k.price;
-  const c=calc();
-  quoteItems=oldItems; kitOverridePrice=oldOverride;
-  return c;
-}
+function kitFinancials(k){const oi=quoteItems,oa=artVariations,oo=kitOverridePrice;quoteItems=clone(k.items);artVariations={};ensureArtDefaults();kitOverridePrice=k.price;const c=calc();quoteItems=oi;artVariations=oa;kitOverridePrice=oo;return c}
 function renderKits(){
-  const grid=document.getElementById('kitGrid');
-  grid.innerHTML=kits.map(k=>{
-    const lines=k.items.map(i=>{const p=productById(i.productId);return `<li>${i.qty}x ${p?p.name:i.productId}</li>`}).join('');
-    const f=kitFinancials(k);
-    const health=f.markup+0.05>=settings.targetMarkup?'lucro saudável':(f.markup>=settings.minMarkup?'lucro aceitável':'rever preço');
-    return `<div class="kit-card ${k.featured?'featured':''}">${k.featured?'<div class="ribbon">RECOMENDADO</div>':''}<span class="tag">${k.desc}</span><h3 style="margin-top:10px">${k.name}</h3><div class="kit-price">${fmt(k.price)}</div><div class="small muted">Interno: ${pct(f.markup)} sobre custo • ${health}</div><ul>${lines}<li>Recheio incluso</li><li>Personalizado e montado</li></ul><button class="btn ${k.featured?'primary':'secondary'}" onclick="useKit('${k.id}')">Usar este kit</button></div>`
-  }).join('');
+  const grid=document.getElementById('kitGrid'); grid.innerHTML=kits.map(k=>{const lines=k.items.map(i=>{const p=productById(i.productId);return `<li>${i.qty}x ${p?p.name:i.productId}</li>`}).join('');const f=kitFinancials(k);const health=f.markup>=settings.targetMarkup?'lucro saudável':(f.markup>=settings.minMarkup?'lucro aceitável':'rever preço');return `<div class="kit-card ${k.featured?'featured':''}">${k.featured?'<div class="ribbon">RECOMENDADO</div>':''}<span class="tag">${k.desc}</span><h3 style="margin-top:10px">${k.name}</h3><div class="kit-price">${fmt(k.price)}</div><div class="small muted">Interno: ${pct(f.markup)} sobre custo produtivo • ${health}</div><ul>${lines}<li>Recheio incluso</li><li>Personalizado e montado</li></ul><button class="btn ${k.featured?'primary':'secondary'}" onclick="useKit('${k.id}')">Usar este kit</button></div>`}).join('');
 }
-window.useKit=(id)=>{const k=kits.find(x=>x.id===id); if(!k)return; quoteItems=clone(k.items); kitOverridePrice=k.price; document.querySelector('[data-page="orcamento"]').click(); document.getElementById('discountRange').value=0; refresh(); showQuoteStep(2)}
-window.goToCustomQuote=()=>{quoteItems=[];kitOverridePrice=null;document.querySelector('[data-page="orcamento"]').click();document.getElementById('discountRange').value=0;refresh();showQuoteStep(2);document.getElementById('productSelect').focus()}
+window.useKit=(id)=>{const k=kits.find(x=>x.id===id);if(!k)return;quoteItems=clone(k.items);artVariations={};ensureArtDefaults();kitOverridePrice=k.price;editingOrderId=null;openPage('orcamento');document.getElementById('discountRange').value=0;refresh();showQuoteStep(2)};
+window.goToCustomQuote=()=>{resetQuote();openPage('orcamento');showQuoteStep(2);document.getElementById('productSelect').focus()};
 
 function renderProductsTable(){
-  const tbody=document.querySelector('#productTable tbody');
-  tbody.innerHTML=products.map((p,idx)=>`<tr><td><input data-key="name" data-idx="${idx}" value="${p.name}"></td><td><input type="number" step="0.01" data-key="cost" data-idx="${idx}" value="${p.cost}"></td><td><input type="number" step="0.01" data-key="labor" data-idx="${idx}" value="${p.labor}"></td><td><input type="number" step="0.01" data-key="price" data-idx="${idx}" value="${Number(p.price||0).toFixed(2)}"></td><td><input type="number" step="1" data-key="minQty" data-idx="${idx}" value="${p.minQty}"></td><td><select data-key="sweet" data-idx="${idx}"><option value="standard" ${p.sweet==='standard'?'selected':''}>Padrão</option><option value="pot" ${p.sweet==='pot'?'selected':''}>Pote Mimo</option></select></td><td><button class="btn danger" onclick="deleteProduct(${idx})">×</button></td></tr>`).join('');
+  document.querySelector('#productTable tbody').innerHTML=products.map((p,idx)=>`<tr><td><input data-key="name" data-idx="${idx}" value="${p.name}"></td><td><input type="number" step="0.01" data-key="cost" data-idx="${idx}" value="${p.cost}"></td><td><input type="number" step="0.01" data-key="labor" data-idx="${idx}" value="${p.labor}"></td><td><input type="number" step="0.01" data-key="price" data-idx="${idx}" value="${Number(p.price||0).toFixed(2)}"></td><td><input type="number" step="1" data-key="minQty" data-idx="${idx}" value="${p.minQty}"></td><td><select data-key="sweet" data-idx="${idx}"><option value="standard" ${p.sweet==='standard'?'selected':''}>Padrão</option><option value="pot" ${p.sweet==='pot'?'selected':''}>Pote Mimo</option></select></td><td><button class="btn danger" onclick="deleteProduct(${idx})">×</button></td></tr>`).join('');
 }
-window.deleteProduct=(idx)=>{if(confirm('Remover este produto?')){products.splice(idx,1);renderProductsTable();renderProductSelect()}}
+window.deleteProduct=(idx)=>{if(confirm('Remover este produto?')){products.splice(idx,1);renderProductsTable();renderProductSelect()}};
+function saveProducts(){document.querySelectorAll('#productTable [data-key]').forEach(el=>{const i=Number(el.dataset.idx),k=el.dataset.key;if(!products[i])return;products[i][k]=['name','sweet'].includes(k)?el.value:Number(el.value||0)});localStorage.setItem('mimo_products',JSON.stringify(products));renderProductSelect();renderKits();refresh();alert('Produtos salvos.')}
+function loadSettingsUI(){Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)el.value=settings[k]});document.getElementById('kpiTarget').textContent=pct(settings.targetMarkup);document.getElementById('kpiMin').textContent=pct(settings.minMarkup);document.getElementById('kpiCash').textContent=pct(settings.cashProfitReservePct)}
+function saveSettings(){Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)settings[k]=Number(el.value||0)});if(settings.minMarkup>settings.targetMarkup){alert('O lucro mínimo não pode ser maior que o lucro ideal.');return}if(settings.artVariantsIncluded<1)settings.artVariantsIncluded=1;localStorage.setItem('mimo_settings',JSON.stringify(settings));loadSettingsUI();renderKits();refresh();alert('Configurações salvas.')}
 
-function loadSettingsUI(){
-  Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)el.value=settings[k]});
-  document.getElementById('kpiTarget').textContent=pct(settings.targetMarkup);
-  document.getElementById('kpiMin').textContent=pct(settings.minMarkup);
-  document.getElementById('kpiCash').textContent=pct(settings.cashProfitReservePct);
+function snapshotCurrent(status){
+  const x=discountedCalc(document.getElementById('discountRange').value||0); return {
+    id:editingOrderId||uid(),status,createdAt:editingOrderId?(orders.find(o=>o.id===editingOrderId)?.createdAt||new Date().toISOString()):new Date().toISOString(),updatedAt:new Date().toISOString(),closedAt:status==='sale'?(orders.find(o=>o.id===editingOrderId)?.closedAt||new Date().toISOString()):null,
+    client:{name:document.getElementById('clientName').value.trim(),phone:document.getElementById('clientPhone').value.trim(),eventDate:document.getElementById('eventDate').value,theme:document.getElementById('theme').value.trim(),childName:document.getElementById('childName').value.trim(),childAge:document.getElementById('childAge').value.trim()},
+    quoteItems:clone(quoteItems),artVariations:clone(artVariations),kitOverridePrice,discountPct:Number(document.getElementById('discountRange').value||0),paymentCondition:document.getElementById('paymentCondition').value,validity:document.getElementById('validity').value,delivery:document.getElementById('delivery').value.trim(),notes:document.getElementById('notes').value.trim(),
+    snapshot:{final:x.final,base:x.base,direct:x.direct,material:x.material,sweets:x.sweets,unitLabor:x.unitLabor,artLabor:x.artLabor,labor:x.labor,reserve:x.reserve,productionCost:x.productionCost,full:x.full,businessProfit:x.businessProfit,markup:x.markup,saleMargin:x.saleMargin,cashProfitReserve:x.cashProfitReserve,availableProfit:x.availableProfit,ownerGain:x.ownerGain,totalQty:x.totalQty}
+  }
 }
-function saveProducts(){
-  document.querySelectorAll('#productTable [data-key]').forEach(el=>{const i=Number(el.dataset.idx); const k=el.dataset.key; if(!products[i])return; products[i][k]=['name','sweet'].includes(k)?el.value:Number(el.value||0)});
-  localStorage.setItem('mimo_products',JSON.stringify(products)); renderProductSelect();renderKits();refresh();alert('Produtos salvos.')
+function persistOrders(){localStorage.setItem('mimo_orders',JSON.stringify(orders));renderOrders();renderFinance()}
+function saveCurrentOrder(status){
+  if(!quoteItems.length){alert('Adicione pelo menos um produto.');return}
+  const order=snapshotCurrent(status); const idx=orders.findIndex(o=>o.id===order.id); if(idx>=0)orders[idx]=order;else orders.unshift(order); editingOrderId=order.id; persistOrders(); updateEditingNotice(); alert(status==='sale'?'Venda confirmada e painel atualizado.':'Orçamento salvo neste aparelho.');
 }
-function saveSettings(){
-  Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)settings[k]=Number(el.value||0)});
-  if(settings.minMarkup>settings.targetMarkup){alert('O lucro mínimo não pode ser maior que o lucro ideal.');return}
-  localStorage.setItem('mimo_settings',JSON.stringify(settings)); loadSettingsUI();renderKits();refresh();alert('Configurações salvas.')
+function resetQuote(){
+  editingOrderId=null;quoteItems=[];artVariations={};kitOverridePrice=null;document.getElementById('discountRange').value=0;['clientName','clientPhone','theme','eventDate','childName','childAge','delivery','notes'].forEach(id=>document.getElementById(id).value='');document.getElementById('paymentCondition').selectedIndex=0;document.getElementById('validity').value='3';updateEditingNotice();refresh();showQuoteStep(1);
+}
+function updateEditingNotice(){const e=document.getElementById('editingNotice');if(editingOrderId){const o=orders.find(x=>x.id===editingOrderId);e.style.display='block';e.textContent=`Editando ${o?.status==='sale'?'venda':'orçamento'} salvo • alterações só entram no histórico quando você salvar novamente.`}else{e.style.display='none';e.textContent=''}}
+function loadOrder(id){
+  const o=orders.find(x=>x.id===id);if(!o)return;editingOrderId=id;quoteItems=clone(o.quoteItems||[]);artVariations=clone(o.artVariations||{});kitOverridePrice=o.kitOverridePrice??null;const c=o.client||{};document.getElementById('clientName').value=c.name||'';document.getElementById('clientPhone').value=c.phone||'';document.getElementById('eventDate').value=c.eventDate||'';document.getElementById('theme').value=c.theme||'';document.getElementById('childName').value=c.childName||'';document.getElementById('childAge').value=c.childAge||'';document.getElementById('delivery').value=o.delivery||'';document.getElementById('notes').value=o.notes||'';document.getElementById('paymentCondition').value=o.paymentCondition||document.getElementById('paymentCondition').options[0].value;document.getElementById('validity').value=String(o.validity||3);document.getElementById('discountRange').value=Number(o.discountPct||0);updateEditingNotice();openPage('orcamento');refresh();showQuoteStep(4)
+}
+window.loadOrder=loadOrder;
+window.deleteOrder=(id)=>{if(!confirm('Excluir este registro? Essa ação também remove a venda do painel financeiro.'))return;orders=orders.filter(o=>o.id!==id);if(editingOrderId===id)resetQuote();persistOrders()};
+window.toggleOrderStatus=(id)=>{const o=orders.find(x=>x.id===id);if(!o)return;o.status=o.status==='sale'?'quote':'sale';o.closedAt=o.status==='sale'?new Date().toISOString():null;o.updatedAt=new Date().toISOString();persistOrders()};
+function renderOrders(){
+  const box=document.getElementById('ordersList'); if(!box)return; const q=(document.getElementById('orderSearch')?.value||'').toLowerCase().trim(); const status=document.getElementById('orderStatusFilter')?.value||'all';
+  const arr=orders.filter(o=>status==='all'||o.status===status).filter(o=>{const c=o.client||{};return !q||[c.name,c.phone,c.theme].join(' ').toLowerCase().includes(q)}).sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));
+  if(!arr.length){box.innerHTML='<div class="empty-state">Nenhum registro encontrado.</div>';return}
+  box.innerHTML=arr.map(o=>{const s=o.snapshot||{};const c=o.client||{};const date=new Date(o.updatedAt||o.createdAt).toLocaleDateString('pt-BR');return `<div class="order-card ${o.status}"><div class="order-top"><div><div class="order-title">${c.name||'Cliente sem nome'}</div><div class="order-meta">${c.theme?c.theme+' • ':''}${date}${c.phone?' • '+c.phone:''}</div></div><div class="order-money">${fmt(s.final||0)}</div></div><div class="order-badges"><span class="order-badge status">${o.status==='sale'?'VENDA FECHADA':'ORÇAMENTO'}</span><span class="order-badge">${s.totalQty||0} itens</span><span class="order-badge">Lucro ${pct(s.markup||0)}</span></div><div class="toolbar order-actions"><button class="btn secondary" onclick="loadOrder('${o.id}')">Editar</button><button class="btn soft" onclick="toggleOrderStatus('${o.id}')">${o.status==='sale'?'Voltar p/ orçamento':'Confirmar venda'}</button><button class="btn danger" onclick="deleteOrder('${o.id}')">Excluir</button></div></div>`}).join('');
+}
+function currentMonthValue(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`}
+function renderFinance(){
+  const input=document.getElementById('financeMonth');if(!input)return;if(!input.value)input.value=currentMonthValue();const month=input.value;
+  const sales=orders.filter(o=>o.status==='sale').filter(o=>{const d=new Date(o.closedAt||o.updatedAt||o.createdAt);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`===month});
+  const sum=k=>money(sales.reduce((a,o)=>a+Number(o.snapshot?.[k]||0),0)); const revenue=sum('final'),expense=sum('direct'),profit=sum('businessProfit'),owner=sum('ownerGain'),cash=sum('cashProfitReserve'); const keys=new Set(sales.map(o=>{const c=o.client||{};const phone=String(c.phone||'').replace(/\D/g,'');return phone||String(c.name||o.id).trim().toLowerCase()})); const ticket=sales.length?money(revenue/sales.length):0;
+  document.getElementById('finRevenue').textContent=fmt(revenue);document.getElementById('finExpense').textContent=fmt(expense);document.getElementById('finProfit').textContent=fmt(profit);document.getElementById('finOwnerGain').textContent=fmt(owner);document.getElementById('finClients').textContent=String(keys.size);document.getElementById('finOrders').textContent=String(sales.length);document.getElementById('finTicket').textContent=fmt(ticket);document.getElementById('finCash').textContent=fmt(cash);
+  const box=document.getElementById('financeSalesList'); if(!sales.length){box.innerHTML='<div class="empty-state">Nenhuma venda confirmada neste mês.</div>';return} box.innerHTML=sales.sort((a,b)=>new Date(b.closedAt)-new Date(a.closedAt)).map(o=>`<div class="finance-sale-row"><div><strong>${o.client?.name||'Cliente sem nome'}</strong><div class="small muted">${new Date(o.closedAt||o.updatedAt).toLocaleDateString('pt-BR')} • lucro ${fmt(o.snapshot?.businessProfit||0)}</div></div><strong>${fmt(o.snapshot?.final||0)}</strong></div>`).join('');
 }
 
-let currentQuoteStep = 1;
-function showQuoteStep(step){
-  currentQuoteStep = Math.max(1,Math.min(4,Number(step)||1));
-  document.querySelectorAll('.quote-step').forEach(el=>el.classList.toggle('active',Number(el.dataset.step)===currentQuoteStep));
-  document.querySelectorAll('.step-tab').forEach(el=>{const n=Number(el.dataset.stepTarget);el.classList.toggle('active',n===currentQuoteStep);el.classList.toggle('done',n<currentQuoteStep)});
-  window.scrollTo({top:0,behavior:'smooth'}); if(currentQuoteStep===4) refresh();
-}
+function showQuoteStep(step){currentQuoteStep=Math.max(1,Math.min(4,Number(step)||1));document.querySelectorAll('.quote-step').forEach(el=>el.classList.toggle('active',Number(el.dataset.step)===currentQuoteStep));document.querySelectorAll('.step-tab').forEach(el=>{const n=Number(el.dataset.stepTarget);el.classList.toggle('active',n===currentQuoteStep);el.classList.toggle('done',n<currentQuoteStep)});window.scrollTo({top:0,behavior:'smooth'});if(currentQuoteStep===4)refresh()}
+const pageMeta={orcamento:['Novo orçamento','Monte o pedido e veja preço, lucro e negociação segura.'],pedidos:['Pedidos e orçamentos','Edite, corrija, confirme ou exclua registros salvos neste aparelho.'],financeiro:['Financeiro','Acompanhe faturamento, gasto, lucro, ganho e clientes por mês.'],kits:['Kits fechados','Três escolhas públicas e um caminho personalizado para pedidos maiores.'],produtos:['Produtos, custos e venda','Controle separado do custo real e do preço cobrado por cada item.'],config:['Configurações financeiras','Ajuste artes, recheios, reservas, lucro sobre custo e regras de desconto.']};
+function openPage(page){const btn=document.querySelector(`.nav-btn[data-page="${page}"]`);if(!btn)return;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=pageMeta[page][0];document.getElementById('pageSubtitle').textContent=pageMeta[page][1];document.getElementById('stickySummary').classList.toggle('hidden',page!=='orcamento');if(page==='pedidos')renderOrders();if(page==='financeiro')renderFinance()}
+
+document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>openPage(btn.dataset.page)));
 document.querySelectorAll('[data-step-target]').forEach(btn=>btn.addEventListener('click',()=>showQuoteStep(btn.dataset.stepTarget)));
 document.querySelectorAll('.next-step').forEach(btn=>btn.addEventListener('click',()=>showQuoteStep(btn.dataset.nextStep)));
 document.querySelectorAll('.prev-step').forEach(btn=>btn.addEventListener('click',()=>showQuoteStep(btn.dataset.prevStep)));
 document.getElementById('stickyResultBtn').addEventListener('click',()=>showQuoteStep(4));
-
-const pageMeta={orcamento:['Novo orçamento','Monte o pedido e veja preço, lucro e negociação segura.'],kits:['Kits fechados','Três escolhas públicas e um caminho personalizado para pedidos maiores.'],produtos:['Produtos, custos e venda','Controle separado do custo real e do preço cobrado por cada item.'],config:['Configurações financeiras','Ajuste recheios, reservas, lucro sobre custo e regras de desconto.']};
-document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(btn.dataset.page).classList.add('active');document.getElementById('pageTitle').textContent=pageMeta[btn.dataset.page][0];document.getElementById('pageSubtitle').textContent=pageMeta[btn.dataset.page][1];document.getElementById('stickySummary').classList.toggle('hidden',btn.dataset.page!=='orcamento')}));
-
-document.getElementById('addProduct').addEventListener('click',()=>{const id=document.getElementById('productSelect').value; const p=productById(id); const entered=Math.max(1,Number(document.getElementById('qtyAdd').value||1)); const q=p?Math.max(entered,Number(p.minQty||1)):entered; if(p&&entered<q) alert(`Quantidade ajustada para o mínimo de ${q} unidades de ${p.name}.`); const existing=quoteItems.find(i=>i.productId===id); if(existing)existing.qty+=q;else quoteItems.push({productId:id,qty:q}); kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
-document.getElementById('clearItems').addEventListener('click',()=>{quoteItems=[];kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
+document.getElementById('addProduct').addEventListener('click',()=>{const id=document.getElementById('productSelect').value,p=productById(id),entered=Math.max(1,Number(document.getElementById('qtyAdd').value||1)),q=p?Math.max(entered,Number(p.minQty||1)):entered;if(p&&entered<q)alert(`Quantidade ajustada para o mínimo de ${q} unidades de ${p.name}.`);const ex=quoteItems.find(i=>i.productId===id);if(ex)ex.qty+=q;else quoteItems.push({productId:id,qty:q});kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
+document.getElementById('clearItems').addEventListener('click',()=>{quoteItems=[];artVariations={};kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
 document.getElementById('discountRange').addEventListener('input',updateDiscountOutputs);
 ['clientName','clientPhone','theme','eventDate','childName','childAge','delivery','notes','paymentCondition','validity'].forEach(id=>document.getElementById(id).addEventListener('input',renderQuotePreview));
-document.getElementById('copyQuote').addEventListener('click',async()=>{await navigator.clipboard.writeText(document.getElementById('quotePreview').textContent); const b=document.getElementById('copyQuote');const old=b.textContent;b.textContent='Copiado ✓';setTimeout(()=>b.textContent=old,1500)});
-document.getElementById('openWhatsApp').addEventListener('click',()=>{const phone=document.getElementById('clientPhone').value.replace(/\D/g,''); const normalized=phone?((phone.startsWith('55')?'':'55')+phone):'5531984912875'; const text=encodeURIComponent(document.getElementById('quotePreview').textContent); window.open(`https://wa.me/${normalized}?text=${text}`,'_blank')});
+document.getElementById('copyQuote').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('quotePreview').textContent);const b=document.getElementById('copyQuote'),old=b.textContent;b.textContent='Copiado ✓';setTimeout(()=>b.textContent=old,1500)}catch(e){alert('Não foi possível copiar automaticamente. Selecione o texto e copie manualmente.')}});
+document.getElementById('openWhatsApp').addEventListener('click',()=>{const phone=document.getElementById('clientPhone').value.replace(/\D/g,''),normalized=phone?((phone.startsWith('55')?'':'55')+phone):'5531984912875',msg=encodeURIComponent(document.getElementById('quotePreview').textContent);window.open(`https://wa.me/${normalized}?text=${msg}`,'_blank')});
+document.getElementById('saveQuote').addEventListener('click',()=>saveCurrentOrder('quote'));document.getElementById('saveSale').addEventListener('click',()=>saveCurrentOrder('sale'));document.getElementById('newQuote').addEventListener('click',resetQuote);document.getElementById('ordersNewQuote').addEventListener('click',()=>{resetQuote();openPage('orcamento')});
+document.getElementById('orderSearch').addEventListener('input',renderOrders);document.getElementById('orderStatusFilter').addEventListener('change',renderOrders);document.getElementById('financeMonth').addEventListener('change',renderFinance);
+document.getElementById('saveProducts').addEventListener('click',saveProducts);document.getElementById('addNewProduct').addEventListener('click',()=>{const id=uid();products.push({id,name:'Novo produto',cost:0,labor:2.50,price:0,minQty:5,sweet:'standard',artFamily:id});renderProductsTable()});document.getElementById('resetProducts').addEventListener('click',()=>{if(confirm('Restaurar produtos padrão?')){products=clone(DEFAULT_PRODUCTS);localStorage.setItem('mimo_products',JSON.stringify(products));renderProductsTable();renderProductSelect();renderKits();refresh()}});
+document.getElementById('saveSettings').addEventListener('click',saveSettings);document.getElementById('resetSettings').addEventListener('click',()=>{if(confirm('Restaurar configurações padrão?')){settings=clone(DEFAULT_SETTINGS);localStorage.setItem('mimo_settings',JSON.stringify(settings));loadSettingsUI();renderKits();refresh()}});
 
-document.getElementById('saveProducts').addEventListener('click',saveProducts);
-document.getElementById('addNewProduct').addEventListener('click',()=>{products.push({id:uid(),name:'Novo produto',cost:0,labor:2.50,price:0,minQty:5,sweet:'standard'});renderProductsTable()});
-document.getElementById('resetProducts').addEventListener('click',()=>{if(confirm('Restaurar produtos padrão?')){products=clone(DEFAULT_PRODUCTS);localStorage.setItem('mimo_products',JSON.stringify(products));renderProductsTable();renderProductSelect();renderKits();refresh()}});
-
-document.getElementById('saveSettings').addEventListener('click',saveSettings);
-document.getElementById('resetSettings').addEventListener('click',()=>{if(confirm('Restaurar configurações padrão?')){settings={...DEFAULT_SETTINGS};localStorage.setItem('mimo_settings',JSON.stringify(settings));loadSettingsUI();renderKits();refresh()}});
-
-renderProductSelect();renderProductsTable();loadSettingsUI();renderKits();refresh();
+renderProductSelect();renderProductsTable();loadSettingsUI();renderKits();renderOrders();renderFinance();updateEditingNotice();refresh();
 </script>
 </body>
 </html>
