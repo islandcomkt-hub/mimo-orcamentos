@@ -534,6 +534,11 @@
   @media(max-width:620px){.finance-kpis{grid-template-columns:1fr 1fr}.finance-kpi strong{font-size:18px}.section-head-row{display:block}.section-head-row .btn,.month-picker{margin-top:10px;width:100%;max-width:none}.order-top{display:block}.order-money{margin-top:8px}.order-actions{display:grid;grid-template-columns:1fr 1fr}.order-actions .btn{width:100%}}
 
 
+
+  .margin-explainer{display:grid;grid-template-columns:42px 1fr;gap:11px;margin-top:12px;padding:13px 14px;border-radius:16px;background:linear-gradient(135deg,#07366f 0%,#0b4c91 100%);color:#fff;box-shadow:0 10px 24px rgba(7,54,111,.16);}
+  .margin-explainer-icon{width:38px;height:38px;border-radius:12px;background:#ffc22a;color:#07366f;display:grid;place-items:center;font-size:20px;box-shadow:0 5px 12px rgba(0,0,0,.12);}
+  .margin-explainer-title{font-weight:950;font-size:13px;margin-bottom:5px}.margin-explainer-text{font-size:11px;line-height:1.5;color:rgba(255,255,255,.92)}.margin-explainer-text strong{color:#fff}.margin-explainer-warning{margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,.16);font-size:10px;line-height:1.4;color:#ffd56a;font-weight:800}
+
   /* V6 • controles visuais, perfis, guloseimas e parcelamento */
   .btn{position:relative;overflow:hidden;min-height:44px;box-shadow:0 8px 18px rgba(7,54,111,.10);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
   .btn.primary{background:linear-gradient(135deg,var(--orange),#ff7d23)!important;color:#fff!important;box-shadow:0 10px 24px rgba(255,98,23,.28)!important}
@@ -547,6 +552,42 @@
   .installment-settings{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}.installment-settings label{display:grid;grid-template-columns:auto 1fr auto;gap:7px;align-items:center;background:#f8fbfe;border:1px solid #e1eaf2;border-radius:14px;padding:10px;text-transform:none;letter-spacing:0}.installment-settings input{padding:8px}.installment-settings span{font-weight:950;color:var(--navy)}
   .kit-levels{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}.kit-levels span{padding:5px 8px;border-radius:999px;background:#f1f6fa;color:var(--navy);font-size:10px;font-weight:900}.kit-levels span.active{background:var(--orange);color:#fff}.kit-price small{font-size:11px;color:var(--muted);display:block;letter-spacing:0;margin-top:3px}.recipe-cost-badge{font-weight:950;color:var(--teal)}
   @media(max-width:620px){.profile-grid{grid-template-columns:1fr}.profile-option{grid-template-columns:auto 1fr auto;text-align:left;place-items:center start}.profile-option small{grid-column:2}.profile-option b{grid-column:3;grid-row:1 / span 2}.installment-line{grid-template-columns:1fr}.installment-settings{grid-template-columns:1fr 1fr}.product-row{gap:8px}.btn{font-size:13px}}
+
+  /* V8 • preços comerciais + navegação cromática */
+  body{--page-bg:#fff4ec;--page-accent:var(--orange);--page-accent-rgb:255,98,23;background:var(--page-bg)!important;transition:background .28s ease}
+  body[data-active-page="orcamento"]{--page-bg:#fff3e9;--page-accent:#ff6217;--page-accent-rgb:255,98,23}
+  body[data-active-page="pedidos"]{--page-bg:#edf9fb;--page-accent:#16b8c0;--page-accent-rgb:22,184,192}
+  body[data-active-page="financeiro"]{--page-bg:#edf9f3;--page-accent:#1daa67;--page-accent-rgb:29,170,103}
+  body[data-active-page="kits"]{--page-bg:#fff8da;--page-accent:#e4a900;--page-accent-rgb:228,169,0}
+  body[data-active-page="produtos"]{--page-bg:#edf5ff;--page-accent:#39b9df;--page-accent-rgb:57,185,223}
+  body[data-active-page="config"]{--page-bg:#eff3fa;--page-accent:#07366f;--page-accent-rgb:7,54,111}
+  main{background:var(--page-bg)!important;transition:background .28s ease;min-height:100vh}
+  .page .card{background:rgba(255,255,255,.97)!important;border:1px solid rgba(var(--page-accent-rgb),.16)!important;box-shadow:0 14px 34px rgba(7,54,111,.10),0 3px 10px rgba(var(--page-accent-rgb),.06)!important}
+  .page .card:hover{box-shadow:0 18px 42px rgba(7,54,111,.12),0 5px 14px rgba(var(--page-accent-rgb),.09)!important}
+  .compact-topbar h1{color:var(--navy)!important}.compact-topbar::after{content:"";display:block;height:4px;border-radius:999px;background:linear-gradient(90deg,var(--page-accent),transparent);margin-top:10px;opacity:.85}
+
+  .app-tabs .nav-btn{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:9px!important;background:#fff!important;color:var(--navy)!important;border:1px solid rgba(7,54,111,.09)!important;box-shadow:0 5px 14px rgba(7,54,111,.05)!important}
+  .app-tabs .nav-btn .nav-icon{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:17px;flex:0 0 32px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.38),0 5px 12px rgba(7,54,111,.08);transition:transform .18s ease}
+  .app-tabs .nav-btn:hover .nav-icon,.app-tabs .nav-btn.active .nav-icon{transform:scale(1.08) rotate(-2deg)}
+  .app-tabs .nav-btn[data-page="orcamento"] .nav-icon{background:#ffdfcf;color:#c8460b}
+  .app-tabs .nav-btn[data-page="pedidos"] .nav-icon{background:#d7f4f5;color:#087f86}
+  .app-tabs .nav-btn[data-page="financeiro"] .nav-icon{background:#d9f3e5;color:#117346}
+  .app-tabs .nav-btn[data-page="kits"] .nav-icon{background:#fff0b5;color:#9d7200}
+  .app-tabs .nav-btn[data-page="produtos"] .nav-icon{background:#d9f3fb;color:#147e9d}
+  .app-tabs .nav-btn[data-page="config"] .nav-icon{background:#dfe8f5;color:#07366f}
+  .app-tabs .nav-btn[data-page="orcamento"].active{background:#ff6217!important;border-color:#ff6217!important;box-shadow:0 10px 24px rgba(255,98,23,.24)!important}
+  .app-tabs .nav-btn[data-page="pedidos"].active{background:#16b8c0!important;border-color:#16b8c0!important;box-shadow:0 10px 24px rgba(22,184,192,.24)!important}
+  .app-tabs .nav-btn[data-page="financeiro"].active{background:#1daa67!important;border-color:#1daa67!important;box-shadow:0 10px 24px rgba(29,170,103,.24)!important}
+  .app-tabs .nav-btn[data-page="kits"].active{background:#ffc22a!important;border-color:#ffc22a!important;color:#07366f!important;box-shadow:0 10px 24px rgba(255,194,42,.28)!important}
+  .app-tabs .nav-btn[data-page="produtos"].active{background:#39b9df!important;border-color:#39b9df!important;box-shadow:0 10px 24px rgba(57,185,223,.24)!important}
+  .app-tabs .nav-btn[data-page="config"].active{background:#07366f!important;border-color:#07366f!important;box-shadow:0 10px 24px rgba(7,54,111,.24)!important}
+  .app-tabs .nav-btn.active:not([data-page="kits"]){color:#fff!important}.app-tabs .nav-btn.active .nav-icon{background:rgba(255,255,255,.94)!important;color:var(--navy)!important}.app-tabs .nav-label{font-weight:900}
+
+  .commercial-price{display:grid;gap:2px;min-width:82px}.commercial-price small{color:#8a97a7;text-decoration:line-through;font-size:10px}.commercial-price strong{font-size:14px;color:var(--orange)}
+  .margin-explainer{background:linear-gradient(135deg,#07366f 0%,#0a5198 58%,#16b8c0 140%)!important}.margin-explainer-warning{color:#ffe183!important}
+  .stage-card,.internal-card,.customer-quote-card,.finance-kpi,.order-card,.kit-card,.kpi{transition:transform .18s ease,box-shadow .18s ease}.stage-card:active,.kit-card:active,.order-card:active{transform:scale(.995)}
+  @media(max-width:1000px){.app-tabs .nav-btn{justify-content:center!important}.app-tabs .nav-label{font-size:11px}.app-tabs .nav-btn .nav-icon{width:30px;height:30px;flex-basis:30px}}
+  @media(max-width:620px){.app-tabs .nav-btn{flex-direction:column!important;gap:4px!important;padding:8px 5px!important}.app-tabs .nav-btn .nav-icon{width:31px;height:31px;flex-basis:31px}.app-tabs .nav-label{font-size:10px;line-height:1.05}.config-tab .config-label{display:block!important}main{padding-top:12px!important}}
 </style>
 </head>
 <body>
@@ -557,12 +598,12 @@
       <div class="brand-copy"><strong>Mimo de Festa</strong><small>Orçamentos & Lucro</small></div>
     </div>
     <nav class="app-tabs">
-      <button class="nav-btn active" data-page="orcamento"><span>🧾 Orçamento</span></button>
-      <button class="nav-btn" data-page="pedidos"><span>📦 Pedidos</span></button>
-      <button class="nav-btn" data-page="financeiro"><span>📊 Financeiro</span></button>
-      <button class="nav-btn" data-page="kits"><span>🎁 Kits</span></button>
-      <button class="nav-btn" data-page="produtos"><span>🧮 Produtos</span></button>
-      <button class="nav-btn config-tab" data-page="config" aria-label="Configurações"><span class="gear">⚙</span><span class="config-label"> Configurações</span></button>
+      <button class="nav-btn active" data-page="orcamento"><span class="nav-icon">🧾</span><span class="nav-label">Orçamento</span></button>
+      <button class="nav-btn" data-page="pedidos"><span class="nav-icon">📦</span><span class="nav-label">Pedidos</span></button>
+      <button class="nav-btn" data-page="financeiro"><span class="nav-icon">📊</span><span class="nav-label">Financeiro</span></button>
+      <button class="nav-btn" data-page="kits"><span class="nav-icon">🎁</span><span class="nav-label">Kits</span></button>
+      <button class="nav-btn" data-page="produtos"><span class="nav-icon">🧮</span><span class="nav-label">Produtos</span></button>
+      <button class="nav-btn config-tab" data-page="config" aria-label="Configurações"><span class="nav-icon">⚙️</span><span class="nav-label config-label">Configurações</span></button>
     </nav>
   </aside>
 
@@ -596,11 +637,19 @@
             <div class="field half"><label>Tema</label><input id="theme" placeholder="Ex.: Fazendinha"></div>
           </div>
           <div class="client-profile-box">
-            <div class="subhead"><strong>Perfil de compra</strong><span>define o lucro aplicado em cada item</span></div>
+            <div class="subhead"><strong>Perfil de compra</strong><span>define a margem sobre a venda de cada item</span></div>
             <div class="profile-grid" id="clientProfileGrid">
-              <label class="profile-option" data-level="1"><input type="radio" name="clientLevel" value="1"><span class="profile-icon">💰</span><strong>Nível 1</strong><small>poder de compra menor</small><b>+35%</b></label>
-              <label class="profile-option active" data-level="2"><input type="radio" name="clientLevel" value="2" checked><span class="profile-icon">⭐</span><strong>Nível 2</strong><small>poder de compra médio</small><b>+40%</b></label>
-              <label class="profile-option" data-level="3"><input type="radio" name="clientLevel" value="3"><span class="profile-icon">👑</span><strong>Nível 3</strong><small>poder de compra alto</small><b>+45%</b></label>
+              <label class="profile-option" data-level="1"><input type="radio" name="clientLevel" value="1"><span class="profile-icon">💰</span><strong>Nível 1</strong><small>poder de compra menor</small><b>35% margem</b></label>
+              <label class="profile-option active" data-level="2"><input type="radio" name="clientLevel" value="2" checked><span class="profile-icon">⭐</span><strong>Nível 2</strong><small>poder de compra médio</small><b>40% margem</b></label>
+              <label class="profile-option" data-level="3"><input type="radio" name="clientLevel" value="3"><span class="profile-icon">👑</span><strong>Nível 3</strong><small>poder de compra alto</small><b>45% margem</b></label>
+            </div>
+            <div class="margin-explainer" id="marginExplainer">
+              <div class="margin-explainer-icon">🧮</div>
+              <div>
+                <div class="margin-explainer-title" id="marginExampleTitle">Como o preço é calculado</div>
+                <div class="margin-explainer-text" id="marginExampleText"></div>
+                <div class="margin-explainer-warning" id="marginExampleCompare"></div>
+              </div>
             </div>
           </div>
           <div class="step-actions right"><button class="btn primary next-step" data-next-step="2">Continuar →</button></div>
@@ -644,7 +693,7 @@
 
           <div class="card span-5 internal-card stage-discount">
             <div class="internal-badge">INTERNO • MIMO</div>
-            <div class="stage-head small-head"><div class="stage-icon">%</div><div><h2>Negociação segura</h2><p>O padrão é 0% de desconto. O limite só libera o que preserva o lucro mínimo.</p></div></div>
+            <div class="stage-head small-head"><div class="stage-icon">%</div><div><h2>Negociação segura</h2><p>O padrão é 0% de desconto. O limite só libera o que preserva a margem mínima sobre a venda.</p></div></div>
             <div class="discount-box clean-discount">
               <div class="slider-line"><input type="range" id="discountRange" min="0" max="0" step="0.5" value="0"><strong id="discountPct">0%</strong></div>
               <div class="summary compact-summary">
@@ -652,7 +701,7 @@
                 <div class="summary-row"><span>Máximo permitido</span><strong id="maxDiscount">0%</strong></div>
                 <div class="summary-row"><span>Preço final</span><strong id="discountedPrice">R$ 0,00</strong></div>
                 <div class="summary-row"><span>Lucro empresarial</span><strong id="contribution">R$ 0,00</strong></div>
-                <div class="summary-row"><span>Lucro sobre custo</span><strong id="afterMargin">0%</strong></div>
+                <div class="summary-row"><span>Margem sobre venda</span><strong id="afterMargin">0%</strong></div>
               </div>
             </div>
           </div>
@@ -668,8 +717,8 @@
             <div class="result-kpis">
               <div class="result-kpi sale"><span>Preço do pedido</span><strong id="resultSale">R$ 0,00</strong><small>valor final ao cliente</small></div>
               <div class="result-kpi cost"><span>Custo total real</span><strong id="resultCost">R$ 0,00</strong><small>produção + doces + mão de obra</small></div>
-              <div class="result-kpi margin"><span>Lucro sobre custo</span><strong id="resultMargin">0%</strong><small id="resultMarginLabel">Aguardando itens</small></div>
-              <div class="result-kpi discount"><span>Desconto máximo</span><strong id="resultMaxDiscount">0%</strong><small>preservando 30% mínimo</small></div>
+              <div class="result-kpi margin"><span>Margem sobre venda</span><strong id="resultMargin">0%</strong><small id="resultMarginLabel">Aguardando itens</small></div>
+              <div class="result-kpi discount"><span>Desconto máximo</span><strong id="resultMaxDiscount">0%</strong><small>preservando 30% de margem</small></div>
             </div>
             <div class="internal-details">
               <div class="summary-row"><span>Preço de tabela / ideal</span><strong id="baseTotal">R$ 0,00</strong></div>
@@ -749,7 +798,7 @@
     <section id="kits" class="page">
       <div class="card span-12">
         <h2>3 kits públicos + Mega Kit</h2>
-        <p class="muted">Os valores mudam conforme o perfil do cliente: N1 35%, N2 40% e N3 45%. O Kit 2 nunca fica abaixo de R$ 300 e o Kit 3 nunca fica abaixo de R$ 490.</p>
+        <p class="muted">Os valores mudam conforme a margem sobre venda escolhida: N1 35%, N2 40% e N3 45%. O Kit 2 nunca fica abaixo de R$ 300 e o Kit 3 nunca fica abaixo de R$ 490.</p>
         <div class="kit-grid" id="kitGrid"></div>
         <div class="mega"><div><h3>Mega Kit Mimo</h3><p>Para festas maiores ou composições fora do padrão. Orçamento personalizado.</p></div><button class="btn primary" onclick="goToCustomQuote()">Montar Mega Kit</button></div>
       </div>
@@ -758,7 +807,7 @@
     <section id="produtos" class="page">
       <div class="card span-12">
         <h2>Produtos, custos e venda</h2>
-        <p class="muted">A tabela separa material, mão de obra e guloseimas. Os preços são calculados automaticamente pelo perfil de compra do cliente.</p>
+        <p class="muted">A tabela separa material, mão de obra e guloseimas. Em cada nível, o valor menor é o cálculo matemático e o valor em destaque é o <strong>preço comercial recomendado</strong>, arredondado para cima em ,90 sem sacrificar a margem.</p>
         <div style="overflow:auto"><table id="productTable"><thead><tr><th>Produto</th><th>Base material</th><th>Mão de obra</th><th>Receita</th><th>Doces padrão</th><th>Custo completo</th><th>N1 • 35%</th><th>N2 • 40%</th><th>N3 • 45%</th><th>Mín.</th><th></th></tr></thead><tbody></tbody></table></div>
         <div class="toolbar"><button class="btn secondary" id="addNewProduct">+ Novo produto</button><button class="btn primary" id="saveProducts">💾 Salvar produtos</button><button class="btn soft" id="resetProducts">↺ Restaurar padrão</button></div>
       </div>
@@ -782,12 +831,12 @@
 
         <div class="card span-6">
           <h2>👤 Perfis de cliente</h2>
-          <p class="muted">Lucro aplicado sobre o custo completo de cada item.</p>
+          <p class="muted">Margem desejada sobre o valor final da venda. O app calcula o preço para que essa porcentagem realmente sobre depois do custo.</p>
           <div class="form-grid">
-            <div class="field third"><label>Nível 1 (%)</label><input type="number" step="0.5" id="level1Markup"></div>
-            <div class="field third"><label>Nível 2 (%)</label><input type="number" step="0.5" id="level2Markup"></div>
-            <div class="field third"><label>Nível 3 (%)</label><input type="number" step="0.5" id="level3Markup"></div>
-            <div class="field half"><label>Piso absoluto de lucro (%)</label><input type="number" step="0.5" id="minMarkup"></div>
+            <div class="field third"><label>Nível 1 • margem venda (%)</label><input type="number" step="0.5" id="level1Markup"></div>
+            <div class="field third"><label>Nível 2 • margem venda (%)</label><input type="number" step="0.5" id="level2Markup"></div>
+            <div class="field third"><label>Nível 3 • margem venda (%)</label><input type="number" step="0.5" id="level3Markup"></div>
+            <div class="field half"><label>Piso mínimo de margem (%)</label><input type="number" step="0.5" id="minMarkup"></div>
             <div class="field half"><label>Limite estratégico de desconto (%)</label><input type="number" step="0.5" id="strategicDiscount"></div>
             <div class="field half"><label>Reserva do lucro para caixa • 90 dias (%)</label><input type="number" step="0.5" id="cashProfitReservePct"></div>
           </div>
@@ -819,7 +868,7 @@
             <div class="kpi"><span>Nível 3</span><strong id="kpiL3">45%</strong></div>
             <div class="kpi"><span>Reserva do lucro</span><strong id="kpiCash">30%</strong></div>
           </div>
-          <div class="notice" style="margin-top:14px">Cada produto é precificado pelo custo real + guloseimas ativas + mão de obra, aplicando o percentual do perfil escolhido. O desconto nunca pode derrubar o lucro abaixo do piso configurado.</div>
+          <div class="notice" style="margin-top:14px">A margem é calculada sobre o preço de venda, não como simples acréscimo no custo. Ex.: custo R$ 6,70 com margem de 40% → preço R$ 11,17, porque R$ 6,70 representa 60% da venda e R$ 4,47 representa os 40% restantes. O desconto nunca pode derrubar a margem abaixo do piso configurado.</div>
           <div class="toolbar"><button class="btn primary" id="saveSettings">💾 Salvar configurações</button><button class="btn soft" id="resetSettings">↺ Restaurar padrão</button></div>
         </div>
       </div>
@@ -829,7 +878,7 @@
     <div class="sticky-metrics">
       <div><span>Custo econ.</span><strong id="stickyCost">R$ 0,00</strong></div>
       <div><span>Venda</span><strong id="stickySale">R$ 0,00</strong></div>
-      <div><span>Lucro / custo</span><strong id="stickyMargin">0%</strong></div>
+      <div><span>Margem venda</span><strong id="stickyMargin">0%</strong></div>
     </div>
     <button class="btn primary" id="stickyResultBtn">Ver orçamento</button>
   </div>
@@ -843,7 +892,7 @@ const pct = n => `${Number(n||0).toFixed(1).replace('.',',')}%`;
 const uid = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2,8)}`;
 const money = n => Math.round((Number(n||0)+Number.EPSILON)*100)/100;
 const clone = v => JSON.parse(JSON.stringify(v));
-const DATA_VERSION = 7;
+const DATA_VERSION = 8;
 
 const DEFAULT_SETTINGS = {
   candySoft:0.14, gum:0.21, fini:0.99, lollipop:0.28, popcorn:0.88, umbrella:0.42, chocBall:0.33,
@@ -904,14 +953,25 @@ let currentQuoteStep = 1;
 let clientLevel = 2;
 
 function productById(id){return products.find(p=>p.id===id)}
-function levelMarkup(level=clientLevel){return Number(settings[`level${Number(level)}Markup`]||40)}
+function levelMargin(level=clientLevel){return Number(settings[`level${Number(level)}Markup`]||40)}
 function recipeCost(recipeId){
   const r=recipes[recipeId]; if(!r)return 0;
   return money(['candySoft','gum','fini','lollipop','popcorn','umbrella','chocBall'].reduce((sum,k)=>sum+Number(r[k]||0)*Number(settings[k]||0),0));
 }
 function itemSweetsEnabled(i,p){return typeof i.sweetsEnabled==='boolean'?i.sweetsEnabled:Boolean(p.sweetsDefault)}
 function itemCost(p,sweetsEnabled){return money(Number(p.cost||0)+Number(p.labor||0)+(sweetsEnabled?recipeCost(p.recipe):0))}
-function itemPrice(p,sweetsEnabled,level=clientLevel){return money(itemCost(p,sweetsEnabled)*(1+levelMarkup(level)/100))}
+function commercialPrice(raw){
+  const value=Number(raw||0); if(value<=0)return 0;
+  // Menor preço terminado em ,90 que nunca fica abaixo do preço matemático.
+  return money(Math.ceil((value-0.90)-1e-9)+0.90);
+}
+function itemCalculatedPrice(p,sweetsEnabled,level=clientLevel){
+  const cost=itemCost(p,sweetsEnabled),m=Math.min(95,Math.max(0,levelMargin(level)))/100;
+  return money(cost/(1-m));
+}
+function itemPrice(p,sweetsEnabled,level=clientLevel){
+  return commercialPrice(itemCalculatedPrice(p,sweetsEnabled,level));
+}
 function paymentLabel(){
   const mode=document.getElementById('paymentCondition').value;
   if(mode==='pix')return 'Pagamento integral no Pix';
@@ -942,13 +1002,14 @@ function calc(){
   const businessProfit=money(base-full);
   const markup=full>0?businessProfit/full*100:0;
   const saleMargin=base>0?businessProfit/base*100:0;
-  const minPrice=money(full*(1+Number(settings.minMarkup||30)/100));
+  const minM=Math.min(95,Math.max(0,Number(settings.minMarkup||30)))/100;
+  const minPrice=full>0?money(full/(1-minM)):0;
   let safePct=base>0?Math.max(0,(base-minPrice)/base*100):0;
   safePct=Math.min(safePct,Number(settings.strategicDiscount||0));
   const cashProfitReserve=money(Math.max(0,businessProfit)*(Number(settings.cashProfitReservePct||0)/100));
   const availableProfit=money(businessProfit-cashProfitReserve);
   const ownerGain=money(unitLabor+availableProfit);
-  return {base,material:money(material),sweets:money(sweets),direct,unitLabor:money(unitLabor),full,businessProfit,markup,saleMargin,minPrice,safePct,cashProfitReserve,availableProfit,ownerGain,totalQty,profileMarkup:levelMarkup()};
+  return {base,material:money(material),sweets:money(sweets),direct,unitLabor:money(unitLabor),full,businessProfit,markup,saleMargin,minPrice,safePct,cashProfitReserve,availableProfit,ownerGain,totalQty,profileMargin:levelMargin()};
 }
 function discountedCalc(discountPct){
   const c=calc(),d=Math.max(0,Number(discountPct||0));
@@ -965,9 +1026,16 @@ function discountedCalc(discountPct){
 }
 
 function renderProfiles(){
-  document.querySelectorAll('.profile-option').forEach(el=>{const lvl=Number(el.dataset.level);el.classList.toggle('active',lvl===clientLevel);const input=el.querySelector('input');if(input)input.checked=lvl===clientLevel;const b=el.querySelector('b');if(b)b.textContent=`+${Number(levelMarkup(lvl)).toFixed(0)}%`});
+  document.querySelectorAll('.profile-option').forEach(el=>{const lvl=Number(el.dataset.level);el.classList.toggle('active',lvl===clientLevel);const input=el.querySelector('input');if(input)input.checked=lvl===clientLevel;const b=el.querySelector('b');if(b)b.textContent=`${Number(levelMargin(lvl)).toFixed(0)}% margem`});
 }
-function setClientLevel(level){clientLevel=Math.min(3,Math.max(1,Number(level||2)));renderProfiles();renderProductSelect();renderProductsTable();renderKits();refresh()}
+function renderMarginExample(){
+  const m=levelMargin(clientLevel), cost=6.70, keep=(100-m)/100, price=money(cost/keep), commercial=commercialPrice(price), sobra=money(price-cost), commercialSobra=money(commercial-cost), commercialMargin=commercial>0?commercialSobra/commercial*100:0, wrong=money(cost*(1+m/100)), wrongMargin=wrong>0?(wrong-cost)/wrong*100:0;
+  const title=document.getElementById('marginExampleTitle'), text=document.getElementById('marginExampleText'), compare=document.getElementById('marginExampleCompare');
+  if(title) title.textContent=`Nível ${clientLevel} • ${pct(m)} de margem sobre a venda`;
+  if(text) text.innerHTML=`Exemplo fácil: custo <strong>${fmt(cost)}</strong>. Para sobrar <strong>${pct(m)}</strong> da venda, o custo representa ${pct(100-m)}. A matemática dá <strong>${fmt(cost)} ÷ ${keep.toFixed(2).replace('.',',')} = ${fmt(price)}</strong>. No orçamento usamos o <strong>preço comercial ${fmt(commercial)}</strong>, sempre arredondado para cima em ,90. Nesse preço sobram ${fmt(commercialSobra)} e a margem real fica em <strong>${pct(commercialMargin)}</strong>, nunca abaixo da meta.`;
+  if(compare) compare.innerHTML=`Não usamos “custo + ${pct(m)}”: isso daria ${fmt(wrong)} e apenas ${pct(wrongMargin)} de margem real. Regra Mimo: primeiro protegemos a margem; depois transformamos o resultado em preço comercial.`;
+}
+function setClientLevel(level){clientLevel=Math.min(3,Math.max(1,Number(level||2)));renderProfiles();renderMarginExample();renderProductSelect();renderProductsTable();renderKits();refresh()}
 
 function renderProductSelect(){
   document.getElementById('productSelect').innerHTML=products.map(p=>`<option value="${p.id}">${p.name} • ${fmt(itemPrice(p,p.sweetsDefault,clientLevel))}</option>`).join('')
@@ -987,12 +1055,12 @@ function updateInstallmentUI(){
   const n=Number(document.getElementById('installmentCount').value||2);document.getElementById('installmentRateLabel').textContent=pct(installmentRate(n));
 }
 function refresh(){
-  renderQuoteItems();renderProfiles();updateInstallmentUI();const c=calc();
+  renderQuoteItems();renderProfiles();renderMarginExample();updateInstallmentUI();const c=calc();
   document.getElementById('baseTotal').textContent=fmt(c.base);
   document.getElementById('directCost').textContent=fmt(c.direct);
   document.getElementById('laborCost').textContent=fmt(c.unitLabor);
   document.getElementById('fullCost').textContent=fmt(c.full);
-  document.getElementById('currentMargin').textContent=pct(c.markup);
+  document.getElementById('currentMargin').textContent=pct(c.saleMargin);
   document.getElementById('idealPrice').textContent=fmt(c.base);
   document.getElementById('minPrice').textContent=fmt(c.minPrice);
   document.getElementById('maxDiscount').textContent=pct(c.safePct);
@@ -1004,16 +1072,16 @@ function refresh(){
   updateDiscountOutputs();
   const st=document.getElementById('marginStatus');
   if(!c.base){st.className='status warn';st.textContent='Adicione produtos para calcular.'}
-  else if(c.markup+0.05>=c.profileMarkup){st.className='status good';st.textContent=`Perfil N${clientLevel}: ${pct(c.markup)} de lucro sobre o custo. Meta deste cliente: ${pct(c.profileMarkup)}.`}
-  else if(c.markup>=settings.minMarkup){st.className='status warn';st.textContent=`Lucro seguro: ${pct(c.markup)} sobre o custo. Piso absoluto: ${pct(settings.minMarkup)}.`}
-  else{st.className='status bad';st.textContent=`Não recomendado: ${pct(c.markup)} de lucro. Piso da Mimo: ${pct(settings.minMarkup)}.`}
-  const r=document.getElementById('resultMarginLabel');if(!c.base)r.textContent='Aguardando itens';else if(c.markup>=c.profileMarkup-.05)r.textContent=`Perfil N${clientLevel} atendido`;else if(c.markup>=settings.minMarkup)r.textContent='Seguro';else r.textContent='Não recomendado';
+  else if(c.saleMargin+0.05>=c.profileMargin){st.className='status good';st.textContent=`Perfil N${clientLevel}: ${pct(c.saleMargin)} de margem sobre a venda. Meta deste cliente: ${pct(c.profileMargin)}.`}
+  else if(c.saleMargin>=settings.minMarkup){st.className='status warn';st.textContent=`Margem segura: ${pct(c.saleMargin)} sobre a venda. Piso absoluto: ${pct(settings.minMarkup)}.`}
+  else{st.className='status bad';st.textContent=`Não recomendado: ${pct(c.saleMargin)} de margem sobre a venda. Piso da Mimo: ${pct(settings.minMarkup)}.`}
+  const r=document.getElementById('resultMarginLabel');if(!c.base)r.textContent='Aguardando itens';else if(c.saleMargin>=c.profileMargin-.05)r.textContent=`Perfil N${clientLevel} atendido`;else if(c.saleMargin>=settings.minMarkup)r.textContent='Seguro';else r.textContent='Não recomendado';
   renderQuotePreview();
 }
 function updateDiscountOutputs(){
   const x=discountedCalc(document.getElementById('discountRange').value||0);
-  document.getElementById('discountPct').textContent=pct(x.discount);document.getElementById('discountedPrice').textContent=fmt(x.final);document.getElementById('contribution').textContent=fmt(x.businessProfit);document.getElementById('afterMargin').textContent=pct(x.markup);
-  document.getElementById('resultSale').textContent=fmt(x.final);document.getElementById('resultMargin').textContent=pct(x.markup);document.getElementById('businessProfit').textContent=fmt(x.businessProfit);document.getElementById('cashProfitReserve').textContent=fmt(x.cashProfitReserve);document.getElementById('availableProfit').textContent=fmt(x.availableProfit);document.getElementById('ownerGain').textContent=fmt(x.ownerGain);document.getElementById('stickySale').textContent=fmt(x.final);document.getElementById('stickyMargin').textContent=pct(x.markup);renderQuotePreview();
+  document.getElementById('discountPct').textContent=pct(x.discount);document.getElementById('discountedPrice').textContent=fmt(x.final);document.getElementById('contribution').textContent=fmt(x.businessProfit);document.getElementById('afterMargin').textContent=pct(x.saleMargin);
+  document.getElementById('resultSale').textContent=fmt(x.final);document.getElementById('resultMargin').textContent=pct(x.saleMargin);document.getElementById('businessProfit').textContent=fmt(x.businessProfit);document.getElementById('cashProfitReserve').textContent=fmt(x.cashProfitReserve);document.getElementById('availableProfit').textContent=fmt(x.availableProfit);document.getElementById('ownerGain').textContent=fmt(x.ownerGain);document.getElementById('stickySale').textContent=fmt(x.final);document.getElementById('stickyMargin').textContent=pct(x.saleMargin);renderQuotePreview();
 }
 function renderQuotePreview(){
   const x=discountedCalc(document.getElementById('discountRange').value||0),name=document.getElementById('clientName').value.trim()||'cliente',theme=document.getElementById('theme').value.trim(),childName=document.getElementById('childName').value.trim(),childAge=document.getElementById('childAge').value.trim(),pers=[childName,childAge].filter(Boolean).join(' • '),date=document.getElementById('eventDate').value,delivery=document.getElementById('delivery').value.trim(),notes=document.getElementById('notes').value.trim();
@@ -1026,16 +1094,18 @@ function renderQuotePreview(){
 
 function itemsFromKit(k){return k.items.map(raw=>{const p=productById(raw.productId);return {...raw,sweetsEnabled:typeof raw.sweetsEnabled==='boolean'?raw.sweetsEnabled:Boolean(p?.sweetsDefault)}})}
 function kitFinancials(k,level){
-  let full=0,sale=0;itemsFromKit(k).forEach(i=>{const p=productById(i.productId);if(!p)return;const c=itemCost(p,i.sweetsEnabled);full+=c*i.qty;sale+=money(c*(1+levelMarkup(level)/100))*i.qty});full=money(full);sale=money(Math.max(sale,Number(k.minPrice||0)));return {full,sale,markup:full>0?(sale-full)/full*100:0}
+  let full=0;itemsFromKit(k).forEach(i=>{const p=productById(i.productId);if(!p)return;full+=itemCost(p,i.sweetsEnabled)*i.qty});
+  full=money(full);const m=Math.min(95,Math.max(0,levelMargin(level)))/100;const calculated=full>0?money(full/(1-m)):0;const floor=Number(k.minPrice||0);const sale=commercialPrice(Math.max(calculated,floor));
+  return {full,calculated,sale,margin:sale>0?(sale-full)/sale*100:0,markup:full>0?(sale-full)/full*100:0}
 }
 function renderKits(){
-  const grid=document.getElementById('kitGrid');grid.innerHTML=kits.map(k=>{const current=kitFinancials(k,clientLevel),levels=[1,2,3].map(l=>({l,...kitFinancials(k,l)}));const lines=k.items.map(i=>{const p=productById(i.productId);return `<li>${i.qty}x ${p?p.name:i.productId}${(typeof i.sweetsEnabled==='boolean'?i.sweetsEnabled:p?.sweetsDefault)?' • com doces':' • sem doces'}</li>`}).join('');return `<div class="kit-card ${k.featured?'featured':''}">${k.featured?'<div class="ribbon">RECOMENDADO</div>':''}<span class="tag">${k.desc}</span><h3 style="margin-top:10px">${k.name}</h3><div class="kit-price">${fmt(current.sale)}<small>perfil N${clientLevel} • lucro ${pct(current.markup)}</small></div><div class="kit-levels">${levels.map(x=>`<span class="${x.l===clientLevel?'active':''}">N${x.l} ${fmt(x.sale)}</span>`).join('')}</div><ul>${lines}<li>Personalizado e montado</li></ul><button class="btn ${k.featured?'primary':'secondary'}" onclick="useKit('${k.id}')">🎁 Usar este kit</button></div>`}).join('')
+  const grid=document.getElementById('kitGrid');grid.innerHTML=kits.map(k=>{const current=kitFinancials(k,clientLevel),levels=[1,2,3].map(l=>({l,...kitFinancials(k,l)}));const lines=k.items.map(i=>{const p=productById(i.productId);return `<li>${i.qty}x ${p?p.name:i.productId}${(typeof i.sweetsEnabled==='boolean'?i.sweetsEnabled:p?.sweetsDefault)?' • com doces':' • sem doces'}</li>`}).join('');return `<div class="kit-card ${k.featured?'featured':''}">${k.featured?'<div class="ribbon">RECOMENDADO</div>':''}<span class="tag">${k.desc}</span><h3 style="margin-top:10px">${k.name}</h3><div class="kit-price">${fmt(current.sale)}<small>perfil N${clientLevel} • margem ${pct(current.margin)}</small></div><div class="kit-levels">${levels.map(x=>`<span class="${x.l===clientLevel?'active':''}">N${x.l} ${fmt(x.sale)}</span>`).join('')}</div><ul>${lines}<li>Personalizado e montado</li></ul><button class="btn ${k.featured?'primary':'secondary'}" onclick="useKit('${k.id}')">🎁 Usar este kit</button></div>`}).join('')
 }
 window.useKit=(id)=>{const k=kits.find(x=>x.id===id);if(!k)return;quoteItems=itemsFromKit(k);activeKitId=id;editingOrderId=null;openPage('orcamento');document.getElementById('discountRange').value=0;refresh();showQuoteStep(2)};
 window.goToCustomQuote=()=>{resetQuote();openPage('orcamento');showQuoteStep(2);document.getElementById('productSelect').focus()};
 
 function renderProductsTable(){
-  const body=document.querySelector('#productTable tbody');body.innerHTML=products.map((p,idx)=>{const sweet=recipeCost(p.recipe),full=itemCost(p,p.sweetsDefault);return `<tr><td><input data-key="name" data-idx="${idx}" value="${p.name}"></td><td><input type="number" step="0.01" data-key="cost" data-idx="${idx}" value="${Number(p.cost||0).toFixed(2)}"></td><td><input type="number" step="0.01" data-key="labor" data-idx="${idx}" value="${Number(p.labor||0).toFixed(2)}"></td><td><select data-key="recipe" data-idx="${idx}"><option value="pot" ${p.recipe==='pot'?'selected':''}>Pote Mimo</option><option value="favor" ${p.recipe==='favor'?'selected':''}>Lembrancinha</option><option value="cofrinho" ${p.recipe==='cofrinho'?'selected':''}>Cofrinho</option></select><div class="small recipe-cost-badge">${fmt(sweet)}</div></td><td><select data-key="sweetsDefault" data-idx="${idx}"><option value="1" ${p.sweetsDefault?'selected':''}>Ativado</option><option value="0" ${!p.sweetsDefault?'selected':''}>Desativado</option></select></td><td><strong>${fmt(full)}</strong></td><td>${fmt(itemPrice(p,p.sweetsDefault,1))}</td><td>${fmt(itemPrice(p,p.sweetsDefault,2))}</td><td>${fmt(itemPrice(p,p.sweetsDefault,3))}</td><td><input type="number" step="1" data-key="minQty" data-idx="${idx}" value="${p.minQty}"></td><td><button class="btn danger" onclick="deleteProduct(${idx})">×</button></td></tr>`}).join('')
+  const body=document.querySelector('#productTable tbody');body.innerHTML=products.map((p,idx)=>{const sweet=recipeCost(p.recipe),full=itemCost(p,p.sweetsDefault);const priceCell=l=>`<div class="commercial-price"><small>${fmt(itemCalculatedPrice(p,p.sweetsDefault,l))}</small><strong>${fmt(itemPrice(p,p.sweetsDefault,l))}</strong></div>`;return `<tr><td><input data-key="name" data-idx="${idx}" value="${p.name}"></td><td><input type="number" step="0.01" data-key="cost" data-idx="${idx}" value="${Number(p.cost||0).toFixed(2)}"></td><td><input type="number" step="0.01" data-key="labor" data-idx="${idx}" value="${Number(p.labor||0).toFixed(2)}"></td><td><select data-key="recipe" data-idx="${idx}"><option value="pot" ${p.recipe==='pot'?'selected':''}>Pote Mimo</option><option value="favor" ${p.recipe==='favor'?'selected':''}>Lembrancinha</option><option value="cofrinho" ${p.recipe==='cofrinho'?'selected':''}>Cofrinho</option></select><div class="small recipe-cost-badge">${fmt(sweet)}</div></td><td><select data-key="sweetsDefault" data-idx="${idx}"><option value="1" ${p.sweetsDefault?'selected':''}>Ativado</option><option value="0" ${!p.sweetsDefault?'selected':''}>Desativado</option></select></td><td><strong>${fmt(full)}</strong></td><td>${priceCell(1)}</td><td>${priceCell(2)}</td><td>${priceCell(3)}</td><td><input type="number" step="1" data-key="minQty" data-idx="${idx}" value="${p.minQty}"></td><td><button class="btn danger" onclick="deleteProduct(${idx})">×</button></td></tr>`}).join('')
 }
 window.deleteProduct=(idx)=>{if(confirm('Remover este produto?')){products.splice(idx,1);renderProductsTable();renderProductSelect();refresh()}};
 function saveProducts(){document.querySelectorAll('#productTable [data-key]').forEach(el=>{const i=Number(el.dataset.idx),k=el.dataset.key;if(!products[i])return;if(k==='name'||k==='recipe')products[i][k]=el.value;else if(k==='sweetsDefault')products[i][k]=el.value==='1';else products[i][k]=Number(el.value||0)});localStorage.setItem('mimo_products',JSON.stringify(products));renderProductSelect();renderProductsTable();renderKits();refresh();alert('Produtos salvos.')}
@@ -1049,7 +1119,7 @@ function loadSettingsUI(){
 function saveSettings(){
   Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)settings[k]=Number(el.value||0)});
   document.querySelectorAll('#recipeTable [data-recipe]').forEach(el=>{const id=el.dataset.recipe,k=el.dataset.rkey;if(recipes[id])recipes[id][k]=Math.max(0,Number(el.value||0))});
-  if(!(settings.minMarkup<=settings.level1Markup&&settings.level1Markup<=settings.level2Markup&&settings.level2Markup<=settings.level3Markup)){alert('A regra precisa ficar: piso ≤ N1 ≤ N2 ≤ N3.');return}
+  if(!(settings.minMarkup<=settings.level1Markup&&settings.level1Markup<=settings.level2Markup&&settings.level2Markup<=settings.level3Markup)){alert('A regra precisa ficar: margem mínima ≤ N1 ≤ N2 ≤ N3.');return}
   localStorage.setItem('mimo_settings',JSON.stringify(settings));localStorage.setItem('mimo_recipes',JSON.stringify(recipes));loadSettingsUI();renderProductsTable();renderProductSelect();renderKits();refresh();alert('Configurações salvas.')
 }
 
@@ -1069,13 +1139,13 @@ window.loadOrder=(id)=>{const o=orders.find(x=>x.id===id);if(!o)return;editingOr
 window.toggleOrderStatus=(id)=>{const o=orders.find(x=>x.id===id);if(!o)return;o.status=o.status==='sale'?'quote':'sale';o.updatedAt=new Date().toISOString();o.closedAt=o.status==='sale'?new Date().toISOString():null;persistOrders()};
 window.deleteOrder=(id)=>{if(confirm('Excluir este registro? Esta ação não pode ser desfeita.')){orders=orders.filter(x=>x.id!==id);if(editingOrderId===id)editingOrderId=null;persistOrders();updateEditingNotice()}};
 
-function renderOrders(){const q=(document.getElementById('orderSearch')?.value||'').trim().toLowerCase(),status=document.getElementById('orderStatusFilter')?.value||'all',box=document.getElementById('ordersList');if(!box)return;const arr=orders.filter(o=>status==='all'||o.status===status).filter(o=>{const c=o.client||{};return !q||[c.name,c.phone,c.theme].join(' ').toLowerCase().includes(q)}).sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));if(!arr.length){box.innerHTML='<div class="empty-state">Nenhum registro encontrado.</div>';return}box.innerHTML=arr.map(o=>{const sn=o.snapshot||{},c=o.client||{},date=new Date(o.updatedAt||o.createdAt).toLocaleDateString('pt-BR');return `<div class="order-card ${o.status}"><div class="order-top"><div><div class="order-title">${c.name||'Cliente sem nome'}</div><div class="order-meta">N${c.level||sn.clientLevel||2} • ${c.theme?c.theme+' • ':''}${date}${c.phone?' • '+c.phone:''}</div></div><div class="order-money">${fmt(sn.final||0)}</div></div><div class="order-badges"><span class="order-badge status">${o.status==='sale'?'VENDA FECHADA':'ORÇAMENTO'}</span><span class="order-badge">${sn.totalQty||0} itens</span><span class="order-badge">Lucro ${pct(sn.markup||0)}</span></div><div class="toolbar order-actions"><button class="btn secondary" onclick="loadOrder('${o.id}')">✏️ Editar</button><button class="btn soft" onclick="toggleOrderStatus('${o.id}')">${o.status==='sale'?'↩ Orçamento':'✅ Confirmar'}</button><button class="btn danger" onclick="deleteOrder('${o.id}')">🗑 Excluir</button></div></div>`}).join('')}
+function renderOrders(){const q=(document.getElementById('orderSearch')?.value||'').trim().toLowerCase(),status=document.getElementById('orderStatusFilter')?.value||'all',box=document.getElementById('ordersList');if(!box)return;const arr=orders.filter(o=>status==='all'||o.status===status).filter(o=>{const c=o.client||{};return !q||[c.name,c.phone,c.theme].join(' ').toLowerCase().includes(q)}).sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));if(!arr.length){box.innerHTML='<div class="empty-state">Nenhum registro encontrado.</div>';return}box.innerHTML=arr.map(o=>{const sn=o.snapshot||{},c=o.client||{},date=new Date(o.updatedAt||o.createdAt).toLocaleDateString('pt-BR');return `<div class="order-card ${o.status}"><div class="order-top"><div><div class="order-title">${c.name||'Cliente sem nome'}</div><div class="order-meta">N${c.level||sn.clientLevel||2} • ${c.theme?c.theme+' • ':''}${date}${c.phone?' • '+c.phone:''}</div></div><div class="order-money">${fmt(sn.final||0)}</div></div><div class="order-badges"><span class="order-badge status">${o.status==='sale'?'VENDA FECHADA':'ORÇAMENTO'}</span><span class="order-badge">${sn.totalQty||0} itens</span><span class="order-badge">Margem ${pct(sn.saleMargin ?? sn.markup ?? 0)}</span></div><div class="toolbar order-actions"><button class="btn secondary" onclick="loadOrder('${o.id}')">✏️ Editar</button><button class="btn soft" onclick="toggleOrderStatus('${o.id}')">${o.status==='sale'?'↩ Orçamento':'✅ Confirmar'}</button><button class="btn danger" onclick="deleteOrder('${o.id}')">🗑 Excluir</button></div></div>`}).join('')}
 function currentMonthValue(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`}
 function renderFinance(){const month=document.getElementById('financeMonth')?.value||currentMonthValue();if(document.getElementById('financeMonth')&&!document.getElementById('financeMonth').value)document.getElementById('financeMonth').value=month;const sales=orders.filter(o=>o.status==='sale').filter(o=>{const d=new Date(o.closedAt||o.updatedAt||o.createdAt);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`===month});const sum=k=>money(sales.reduce((a,o)=>a+Number(o.snapshot?.[k]||0),0)),revenue=sum('final'),expense=sum('direct'),profit=sum('businessProfit'),owner=sum('ownerGain'),cash=sum('cashProfitReserve'),keys=new Set(sales.map(o=>{const c=o.client||{},phone=String(c.phone||'').replace(/\D/g,'');return phone||String(c.name||o.id).trim().toLowerCase()})),ticket=sales.length?money(revenue/sales.length):0;document.getElementById('finRevenue').textContent=fmt(revenue);document.getElementById('finExpense').textContent=fmt(expense);document.getElementById('finProfit').textContent=fmt(profit);document.getElementById('finOwnerGain').textContent=fmt(owner);document.getElementById('finClients').textContent=keys.size;document.getElementById('finOrders').textContent=sales.length;document.getElementById('finTicket').textContent=fmt(ticket);document.getElementById('finCash').textContent=fmt(cash);const box=document.getElementById('financeSalesList');if(!sales.length){box.innerHTML='<div class="empty-state">Nenhuma venda confirmada neste mês.</div>';return}box.innerHTML=sales.sort((a,b)=>new Date(b.closedAt)-new Date(a.closedAt)).map(o=>`<div class="finance-sale-row"><div><strong>${o.client?.name||'Cliente sem nome'}</strong><div class="small muted">${new Date(o.closedAt||o.updatedAt).toLocaleDateString('pt-BR')} • N${o.client?.level||o.snapshot?.clientLevel||2} • lucro ${fmt(o.snapshot?.businessProfit||0)}</div></div><strong>${fmt(o.snapshot?.final||0)}</strong></div>`).join('')}
 
 function showQuoteStep(step){currentQuoteStep=Number(step);document.querySelectorAll('.quote-step').forEach(el=>el.classList.toggle('active',Number(el.dataset.step)===currentQuoteStep));document.querySelectorAll('.step-tab').forEach(el=>{const n=Number(el.dataset.stepTarget);el.classList.toggle('active',n===currentQuoteStep);el.classList.toggle('done',n<currentQuoteStep)});window.scrollTo({top:0,behavior:'smooth'})}
 const pageMeta={orcamento:['Novo orçamento','Monte o pedido com perfil de compra, doces e parcelamento.'],pedidos:['Pedidos e orçamentos','Edite, corrija, confirme ou exclua registros salvos neste aparelho.'],financeiro:['Financeiro','Acompanhe faturamento, gasto, lucro, ganho e clientes por mês.'],kits:['Kits fechados','Valores calculados por perfil com piso de R$ 300 no Kit 2 e R$ 490 no Kit 3.'],produtos:['Produtos e precificação','Veja custo real e preço automático por nível de cliente.'],config:['Configurações','Ajuste guloseimas, perfis de lucro, receitas e parcelamento.']};
-function openPage(page){const btn=document.querySelector(`.nav-btn[data-page="${page}"]`);if(!btn)return;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=pageMeta[page][0];document.getElementById('pageSubtitle').textContent=pageMeta[page][1];document.getElementById('stickySummary').classList.toggle('hidden',page!=='orcamento');if(page==='pedidos')renderOrders();if(page==='financeiro')renderFinance();if(page==='produtos')renderProductsTable();if(page==='kits')renderKits();if(page==='config')loadSettingsUI()}
+function openPage(page){const btn=document.querySelector(`.nav-btn[data-page="${page}"]`);if(!btn)return;document.body.dataset.activePage=page;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=pageMeta[page][0];document.getElementById('pageSubtitle').textContent=pageMeta[page][1];document.getElementById('stickySummary').classList.toggle('hidden',page!=='orcamento');if(page==='pedidos')renderOrders();if(page==='financeiro')renderFinance();if(page==='produtos')renderProductsTable();if(page==='kits')renderKits();if(page==='config')loadSettingsUI()}
 
 document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>openPage(btn.dataset.page)));
 document.querySelectorAll('[data-step-target]').forEach(btn=>btn.addEventListener('click',()=>showQuoteStep(btn.dataset.stepTarget)));
@@ -1097,7 +1167,7 @@ document.getElementById('saveProducts').addEventListener('click',saveProducts);d
 document.getElementById('saveSettings').addEventListener('click',saveSettings);document.getElementById('resetSettings').addEventListener('click',()=>{if(confirm('Restaurar custos, receitas, perfis e parcelamento padrão?')){settings=clone(DEFAULT_SETTINGS);recipes=clone(DEFAULT_RECIPES);localStorage.setItem('mimo_settings',JSON.stringify(settings));localStorage.setItem('mimo_recipes',JSON.stringify(recipes));loadSettingsUI();renderProductsTable();renderProductSelect();renderKits();refresh()}});
 document.getElementById('financeMonth').value=currentMonthValue();
 
-renderProductSelect();renderProductsTable();loadSettingsUI();renderKits();renderOrders();renderFinance();renderProfiles();refresh();showQuoteStep(1);updateEditingNotice();
+document.body.dataset.activePage='orcamento';renderProductSelect();renderProductsTable();loadSettingsUI();renderKits();renderOrders();renderFinance();renderProfiles();refresh();showQuoteStep(1);updateEditingNotice();
 </script>
 </body>
 </html>
