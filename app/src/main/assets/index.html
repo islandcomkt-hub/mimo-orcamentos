@@ -527,12 +527,94 @@
 
 
 
-  /* V5 • Pedidos, financeiro e criação de arte */
+  /* V6 • custos exatos, receitas de guloseimas e cofrinho opcional */
   .art-box{margin-top:12px}.art-config{display:grid;gap:8px;margin-top:10px}.art-row{display:grid;grid-template-columns:minmax(150px,1fr) 92px 110px;gap:8px;align-items:center;background:#fff;border:1px solid #e7edf3;border-radius:13px;padding:10px}.art-row strong{color:var(--navy);font-size:13px}.art-row small{display:block;color:var(--muted);margin-top:2px}.art-row input{padding:8px}.art-fee{font-weight:900;color:var(--teal);text-align:right}
   .section-head-row{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.order-filters{display:grid;grid-template-columns:1fr 190px;gap:10px;margin:16px 0}.orders-list,.finance-sales-list{display:grid;gap:10px}.order-card{border:1px solid #e3eaf0;border-radius:16px;padding:14px;background:#fff}.order-card.sale{border-left:5px solid var(--green)}.order-card.quote{border-left:5px solid var(--yellow)}.order-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.order-title{font-weight:950;color:var(--navy)}.order-meta{font-size:12px;color:var(--muted);margin-top:4px}.order-money{font-size:18px;font-weight:950;color:var(--navy);white-space:nowrap}.order-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.order-badge{font-size:10px;font-weight:900;padding:5px 8px;border-radius:999px;background:#eef4f9;color:var(--navy)}.order-card.sale .order-badge.status{background:#eaf8f1;color:#13784c}.order-card.quote .order-badge.status{background:#fff4dd;color:#9a5e00}.order-actions{margin-top:10px!important}.order-actions .btn{padding:8px 10px;font-size:12px}.empty-state{padding:28px 14px;text-align:center;border:1px dashed #d8e1e9;border-radius:16px;color:var(--muted)}
   .finance-hero{border-top:5px solid var(--teal)}.month-picker{max-width:170px}.finance-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.finance-kpi{background:#fff;border:1px solid #e4ebf1;border-radius:15px;padding:14px}.finance-kpi span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:850}.finance-kpi strong{display:block;font-size:22px;color:var(--navy);margin-top:4px}.finance-kpi small{display:block;color:var(--muted);margin-top:3px}.finance-sale-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-bottom:1px dashed #dfe6ec}.finance-sale-row:last-child{border-bottom:0}.finance-sale-row strong{color:var(--navy)}
   @media(max-width:1000px){.app-tabs{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}.config-tab .config-label{display:inline!important}.finance-kpis{grid-template-columns:repeat(2,1fr)}.order-filters{grid-template-columns:1fr}.section-head-row{align-items:center}}
   @media(max-width:620px){.art-row{grid-template-columns:1fr 82px}.art-fee{grid-column:span 2;text-align:left}.finance-kpis{grid-template-columns:1fr 1fr}.finance-kpi strong{font-size:18px}.section-head-row{display:block}.section-head-row .btn,.month-picker{margin-top:10px;width:100%;max-width:none}.order-top{display:block}.order-money{margin-top:8px}.order-actions{display:grid;grid-template-columns:1fr 1fr}.order-actions .btn{width:100%}}
+
+
+  /* V6 • receitas exatas de guloseimas */
+  .sweet-toggle{display:inline-flex;align-items:center;gap:8px;margin-top:8px;padding:7px 10px;border-radius:999px;background:#f4fbfb;color:var(--navy);font-size:12px;font-weight:900;border:1px solid rgba(22,184,192,.22);width:max-content}
+  .sweet-toggle input{width:auto;margin:0;accent-color:var(--teal)}
+  .sweet-state{display:inline-flex;margin-top:6px;font-size:11px;font-weight:850;color:var(--teal)}
+  .recipe-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+  .recipe-summary>div{padding:11px 12px;border-radius:14px;background:#f8fbff;border:1px solid rgba(7,54,111,.08)}
+  .recipe-summary span{display:block;font-size:11px;color:var(--muted);font-weight:800}.recipe-summary strong{display:block;color:var(--navy);font-size:18px;margin-top:3px}
+  @media(max-width:620px){.recipe-summary{grid-template-columns:1fr}}
+
+
+  /* V7 • ícones + micro animações + mais contraste visual */
+  :root{
+    --pink:#ff7ab6;
+    --violet:#8f7cf7;
+    --sky:#6cc6ff;
+    --soft-pink:#fff1f7;
+    --soft-violet:#f4f1ff;
+    --soft-sky:#eef8ff;
+  }
+  @keyframes mimoFadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes mimoPulse{0%,100%{box-shadow:0 10px 26px rgba(255,194,42,.18)}50%{box-shadow:0 14px 30px rgba(255,98,23,.24)}}
+  @keyframes mimoShine{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+  .page.active{display:block;animation:mimoFadeUp .35s ease both}
+  .card,.order-card,.result-kpi,.finance-kpi,.kit-card,.product-row,.nav-btn,.step-tab,.btn,.sticky-summary,.sweet-toggle,.pill{transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease}
+  .card:hover,.kit-card:hover,.result-kpi:hover,.finance-kpi:hover,.order-card:hover,.product-row:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(7,54,111,.08)!important}
+  .nav-btn{display:flex;align-items:center;gap:10px;position:relative;overflow:hidden}
+  .nav-btn .nav-ico{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:10px;font-size:14px;background:#f4f8fc;border:1px solid #dfe7ef;flex:0 0 26px}
+  .nav-btn.active .nav-ico{background:linear-gradient(135deg,var(--yellow),#ffe498);border-color:#f5d46a}
+  .nav-btn.config-tab .nav-ico{background:var(--soft-violet)}
+  .nav-btn::after{content:"";position:absolute;top:0;left:0;height:100%;width:46px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);opacity:0}
+  .nav-btn:hover::after{opacity:1;animation:mimoShine .75s ease}
+  .step-tab{position:relative;gap:8px}
+  .step-tab .step-ico{font-size:13px;opacity:.95}
+  .step-tab.active{box-shadow:0 10px 22px rgba(7,54,111,.15)}
+  .step-tab.done{background:#f3fbfb;border:1px solid rgba(22,184,192,.18);border-radius:12px}
+  .stage-icon{font-size:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 10px 20px rgba(7,54,111,.08)}
+  .btn.primary{animation:mimoPulse 2.8s ease-in-out infinite; position:relative; overflow:hidden}
+  .btn.primary::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.26) 45%,transparent 75%);transform:translateX(-140%)}
+  .btn.primary:hover::after{animation:mimoShine .8s ease}
+  .finance-kpi:nth-child(1){border-top:6px solid var(--orange);background:linear-gradient(180deg,#fff7f2, #fff)}
+  .finance-kpi:nth-child(2){border-top:6px solid var(--teal);background:linear-gradient(180deg,#f4fdfc, #fff)}
+  .finance-kpi:nth-child(3){border-top:6px solid var(--yellow);background:linear-gradient(180deg,#fffbed, #fff)}
+  .finance-kpi:nth-child(4){border-top:6px solid var(--navy);background:linear-gradient(180deg,#f4f8ff, #fff)}
+  .finance-kpi:nth-child(5){border-top:6px solid var(--pink);background:linear-gradient(180deg,#fff4f9, #fff)}
+  .finance-kpi:nth-child(6){border-top:6px solid var(--violet);background:linear-gradient(180deg,#f6f4ff, #fff)}
+  .finance-kpi:nth-child(7){border-top:6px solid var(--sky);background:linear-gradient(180deg,#f2faff, #fff)}
+  .finance-kpi:nth-child(8){border-top:6px solid var(--green);background:linear-gradient(180deg,#f2fcf7, #fff)}
+  .result-kpi.sale{background:linear-gradient(180deg,#fff5f0,#fff)}
+  .result-kpi.cost{background:linear-gradient(180deg,#f1fcfb,#fff)}
+  .result-kpi.margin{background:linear-gradient(180deg,#fffbee,#fff)}
+  .result-kpi.discount{background:linear-gradient(180deg,#f4f8ff,#fff)}
+  .sticky-summary{border:2px solid #dce6ef}
+  .sticky-summary::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--orange),var(--yellow),var(--teal),var(--pink),var(--violet))}
+  .sticky-metrics div:nth-child(1){background:#fff7f2}
+  .sticky-metrics div:nth-child(2){background:#f3fcfb}
+  .sticky-metrics div:nth-child(3){background:#fff9ed}
+  .sticky-metrics div:nth-child(4){background:#f4f8ff}
+  .recipe-summary>div:nth-child(1){background:linear-gradient(180deg,#fff7f2,#fff);border-color:#ffd7c5}
+  .recipe-summary>div:nth-child(2){background:linear-gradient(180deg,#f4fdfc,#fff);border-color:#c6efed}
+  .recipe-summary>div:nth-child(3){background:linear-gradient(180deg,#fff4f9,#fff);border-color:#ffd2e6}
+  .section-head-row h2::before{margin-right:8px}
+  #pedidos .section-head-row h2::before{content:"📦"}
+  #financeiro .section-head-row h2::before{content:"📈"}
+  #kits h2::before{content:"🎁 ";}
+  #produtos h2::before{content:"🛍️ ";}
+  #config .card:nth-child(1) h2::before{content:"🍬 ";}
+  #config .card:nth-child(2) h2::before{content:"⚙️ ";}
+  .notice{position:relative;padding-left:42px}
+  .notice::before{content:"💡";position:absolute;left:14px;top:12px;font-size:16px}
+  .sweet-toggle::before{content:"🍭"}
+  .customer-label{display:inline-flex;align-items:center;gap:6px}
+  .customer-label::before{content:"💬"}
+  .internal-badge::before{content:"🔒 ";}
+  .empty-state::before{content:"🗂️";display:block;font-size:28px;margin-bottom:8px}
+  .status.good::before{content:"✅ ";}.status.warn::before{content:"⚠️ ";}.status.bad::before{content:"⛔ ";}
+  @media(max-width:620px){
+    .nav-btn .nav-ico{width:24px;height:24px;font-size:13px}
+    .step-tab .step-ico{display:none}
+    .btn.primary{animation:none}
+  }
 
 </style>
 </head>
@@ -544,12 +626,12 @@
       <div class="brand-copy"><strong>Mimo de Festa</strong><small>Orçamentos & Lucro</small></div>
     </div>
     <nav class="app-tabs">
-      <button class="nav-btn active" data-page="orcamento"><span>Orçamento</span></button>
-      <button class="nav-btn" data-page="pedidos"><span>Pedidos</span></button>
-      <button class="nav-btn" data-page="financeiro"><span>Financeiro</span></button>
-      <button class="nav-btn" data-page="kits"><span>Kits</span></button>
-      <button class="nav-btn" data-page="produtos"><span>Produtos</span></button>
-      <button class="nav-btn config-tab" data-page="config" aria-label="Configurações"><span class="gear">⚙</span><span class="config-label">Configurações</span></button>
+      <button class="nav-btn active" data-page="orcamento"><span class="nav-ico">🧾</span><span>Orçamento</span></button>
+      <button class="nav-btn" data-page="pedidos"><span class="nav-ico">📦</span><span>Pedidos</span></button>
+      <button class="nav-btn" data-page="financeiro"><span class="nav-ico">📈</span><span>Financeiro</span></button>
+      <button class="nav-btn" data-page="kits"><span class="nav-ico">🎁</span><span>Kits</span></button>
+      <button class="nav-btn" data-page="produtos"><span class="nav-ico">🛍️</span><span>Produtos</span></button>
+      <button class="nav-btn config-tab" data-page="config" aria-label="Configurações"><span class="nav-ico gear">⚙️</span><span class="config-label">Configurações</span></button>
     </nav>
   </aside>
 
@@ -564,18 +646,18 @@
 
     <section id="orcamento" class="page active">
       <div class="quote-stepper" aria-label="Etapas do orçamento">
-        <button type="button" class="step-tab active" data-step-target="1"><span class="step-num">1</span><span>Cliente</span></button>
+        <button type="button" class="step-tab active" data-step-target="1"><span class="step-num">1</span><span class="step-ico">👤</span><span>Cliente</span></button>
         <span class="step-arrow">→</span>
-        <button type="button" class="step-tab" data-step-target="2"><span class="step-num">2</span><span>Produtos</span></button>
+        <button type="button" class="step-tab" data-step-target="2"><span class="step-num">2</span><span class="step-ico">🎁</span><span>Produtos</span></button>
         <span class="step-arrow">→</span>
-        <button type="button" class="step-tab" data-step-target="3"><span class="step-num">3</span><span>Condições</span></button>
+        <button type="button" class="step-tab" data-step-target="3"><span class="step-num">3</span><span class="step-ico">⚙️</span><span>Condições</span></button>
         <span class="step-arrow">→</span>
-        <button type="button" class="step-tab" data-step-target="4"><span class="step-num">4</span><span>Resultado</span></button>
+        <button type="button" class="step-tab" data-step-target="4"><span class="step-num">4</span><span class="step-ico">📊</span><span>Resultado</span></button>
       </div>
 
       <div class="quote-step active" data-step="1">
         <div class="card stage-card stage-client">
-          <div class="stage-head"><div class="stage-icon">1</div><div><span class="eyebrow">ETAPA 1</span><h2>Cliente e evento</h2><p>Comece só com o essencial para montar o orçamento.</p></div></div>
+          <div class="stage-head"><div class="stage-icon">👤</div><div><span class="eyebrow">ETAPA 1</span><h2>Cliente e evento</h2><p>Comece só com o essencial para montar o orçamento.</p></div></div>
           <div class="form-grid compact-fields">
             <div class="field half"><label>Cliente</label><input id="clientName" placeholder="Nome do cliente" autocomplete="name"></div>
             <div class="field half"><label>WhatsApp</label><input id="clientPhone" inputmode="tel" placeholder="(31) 9xxxx-xxxx"></div>
@@ -588,7 +670,7 @@
 
       <div class="quote-step" data-step="2">
         <div class="card stage-card stage-products">
-          <div class="stage-head"><div class="stage-icon">2</div><div><span class="eyebrow">ETAPA 2</span><h2>Produtos</h2><p>Adicione o kit ou os itens do pedido e complete a personalização.</p></div></div>
+          <div class="stage-head"><div class="stage-icon">🎁</div><div><span class="eyebrow">ETAPA 2</span><h2>Produtos</h2><p>Adicione o kit ou os itens do pedido e complete a personalização.</p></div></div>
           <div class="product-adder">
             <select id="productSelect"></select>
             <input id="qtyAdd" type="number" min="1" value="5" aria-label="Quantidade">
@@ -603,12 +685,7 @@
               <div class="field half"><label>Idade</label><input id="childAge" placeholder="Ex.: 2 anos"></div>
             </div>
           </div>
-          <div class="personalization-box art-box">
-            <div class="subhead"><strong>Artes do pedido</strong><span>interno • não aparece no orçamento do cliente</span></div>
-            <div id="artConfig" class="art-config"></div>
-            <div class="notice mini-notice">Cada família de arte inclui até <strong>2 variações</strong> por uma cobrança interna. Pote Mimo + Cofrinho compartilham a mesma família. A 3ª variação abre um novo bloco de criação.</div>
-          </div>
-          <div class="notice mini-notice">Apresente primeiro a versão completa. “Sem doce” ou “sem 3D” ficam como alternativa de negociação, não como escolha inicial.</div>
+          <div class="notice mini-notice">A personalização da arte já está inclusa e não gera custo adicional. Potes e lembrancinhas entram com a receita padrão de guloseimas; no Cofrinho, as guloseimas são opcionais e começam desativadas.</div>
           <div class="step-actions"><button class="btn soft prev-step" data-prev-step="1">Voltar</button><button class="btn primary next-step" data-next-step="3">Continuar</button></div>
         </div>
       </div>
@@ -616,7 +693,7 @@
       <div class="quote-step" data-step="3">
         <div class="grid quote-grid">
           <div class="card span-7 stage-card stage-conditions">
-            <div class="stage-head"><div class="stage-icon">3</div><div><span class="eyebrow">ETAPA 3</span><h2>Condições do orçamento</h2><p>Defina apenas o que o cliente precisa ver na proposta.</p></div></div>
+            <div class="stage-head"><div class="stage-icon">⚙️</div><div><span class="eyebrow">ETAPA 3</span><h2>Condições do orçamento</h2><p>Defina apenas o que o cliente precisa ver na proposta.</p></div></div>
             <div class="form-grid compact-fields">
               <div class="field half"><label>Pagamento</label><select id="paymentCondition"><option>50% para confirmar + 50% antes da entrega</option><option>Pagamento integral no Pix</option><option>Condição personalizada</option></select></div>
               <div class="field half"><label>Validade</label><select id="validity"><option value="3">3 dias</option><option value="5">5 dias</option><option value="7">7 dias</option></select></div>
@@ -627,7 +704,7 @@
 
           <div class="card span-5 internal-card stage-discount">
             <div class="internal-badge">INTERNO • MIMO</div>
-            <div class="stage-head small-head"><div class="stage-icon">%</div><div><h2>Negociação segura</h2><p>O padrão é 0% de desconto. O limite só libera o que preserva o lucro mínimo.</p></div></div>
+            <div class="stage-head small-head"><div class="stage-icon">💸</div><div><h2>Negociação segura</h2><p>O padrão é 0% de desconto. O limite só libera o que preserva o lucro mínimo.</p></div></div>
             <div class="discount-box clean-discount">
               <div class="slider-line"><input type="range" id="discountRange" min="0" max="0" step="0.5" value="0"><strong id="discountPct">0%</strong></div>
               <div class="summary compact-summary">
@@ -645,7 +722,7 @@
 
       <div class="quote-step" data-step="4">
         <div class="card stage-card stage-result">
-          <div class="stage-head"><div class="stage-icon">4</div><div><span class="eyebrow">ETAPA 4</span><h2>Resultado</h2><p>Confira os números internos e depois envie apenas a proposta ao cliente.</p></div></div>
+          <div class="stage-head"><div class="stage-icon">📊</div><div><span class="eyebrow">ETAPA 4</span><h2>Resultado</h2><p>Confira os números internos e depois envie apenas a proposta ao cliente.</p></div></div>
           <div class="internal-panel">
             <div class="internal-badge">INTERNO • MIMO</div>
             <div class="result-kpis">
@@ -658,7 +735,6 @@
               <div class="summary-row"><span>Preço de tabela / ideal</span><strong id="baseTotal">R$ 0,00</strong></div>
               <div class="summary-row"><span>Material + doces</span><strong id="directCost">R$ 0,00</strong></div>
               <div class="summary-row"><span>Mão de obra de montagem</span><strong id="laborCost">R$ 0,00</strong></div>
-              <div class="summary-row"><span>Criação de arte • remuneração</span><strong id="artCost">R$ 0,00</strong></div>
               <div class="summary-row"><span>Reserva operacional</span><strong id="reserveCost">R$ 0,00</strong></div>
               <div class="summary-row"><span>Custo econômico completo</span><strong id="fullCost">R$ 0,00</strong></div>
               <div class="summary-row"><span>Lucro empresarial</span><strong id="businessProfit">R$ 0,00</strong></div>
@@ -669,9 +745,9 @@
             </div>
             <div id="marginStatus" class="status warn">Adicione produtos para calcular.</div>
             <div class="toolbar order-actions">
-              <button class="btn secondary" id="saveQuote">Salvar orçamento</button>
-              <button class="btn primary" id="saveSale">Confirmar venda</button>
-              <button class="btn soft" id="newQuote">Novo orçamento</button>
+              <button class="btn secondary" id="saveQuote">💾 Salvar orçamento</button>
+              <button class="btn primary" id="saveSale">✅ Confirmar venda</button>
+              <button class="btn soft" id="newQuote">↺ Novo orçamento</button>
             </div>
             <div id="editingNotice" class="small muted" style="display:none;margin-top:8px"></div>
           </div>
@@ -681,9 +757,9 @@
             <h3>Orçamento pronto para enviar</h3>
             <div class="quote-preview" id="quotePreview"></div>
             <div class="toolbar quote-actions">
-              <button class="btn secondary" id="copyQuote">Copiar para WhatsApp</button>
-              <button class="btn primary" id="openWhatsApp">Abrir WhatsApp</button>
-              <button class="btn soft" onclick="window.print()">Imprimir / PDF</button>
+              <button class="btn secondary" id="copyQuote">📋 Copiar para WhatsApp</button>
+              <button class="btn primary" id="openWhatsApp">💬 Abrir WhatsApp</button>
+              <button class="btn soft" onclick="window.print()">🖨️ Imprimir / PDF</button>
             </div>
           </div>
           <div class="step-actions"><button class="btn soft prev-step" data-prev-step="3">Voltar</button></div>
@@ -695,7 +771,7 @@
         <div class="card span-12">
           <div class="section-head-row">
             <div><h2>Pedidos e orçamentos</h2><p class="muted">Tudo fica salvo neste aparelho. Edite, corrija, confirme ou exclua sem alterar os números antigos por engano.</p></div>
-            <button class="btn primary" id="ordersNewQuote">+ Novo orçamento</button>
+            <button class="btn primary" id="ordersNewQuote">✨ Novo orçamento</button>
           </div>
           <div class="order-filters">
             <input id="orderSearch" placeholder="Buscar cliente, tema ou WhatsApp">
@@ -736,7 +812,7 @@
         <h2>3 kits públicos + Mega Kit</h2>
         <p class="muted">Poucas escolhas, oferta clara e Pote Mimo 3D aparecendo já no segundo nível.</p>
         <div class="kit-grid" id="kitGrid"></div>
-        <div class="mega"><div><h3>Mega Kit Mimo</h3><p>Para festas maiores ou composições fora do padrão. Orçamento personalizado.</p></div><button class="btn primary" onclick="goToCustomQuote()">Montar Mega Kit</button></div>
+        <div class="mega"><div><h3>Mega Kit Mimo</h3><p>Para festas maiores ou composições fora do padrão. Orçamento personalizado.</p></div><button class="btn primary" onclick="goToCustomQuote()">🚀 Montar Mega Kit</button></div>
       </div>
     </section>
 
@@ -744,33 +820,42 @@
       <div class="card span-12">
         <h2>Produtos, custos e venda</h2>
         <p class="muted">Custo é o que a Mimo paga para produzir. Preço de venda é o que o cliente paga. O app protege o lucro mínimo automaticamente.</p>
-        <div style="overflow:auto"><table id="productTable"><thead><tr><th>Produto</th><th>Custo material</th><th>Mão de obra / un.</th><th>Preço venda / un.</th><th>Min. pedido</th><th>Recheio padrão</th><th></th></tr></thead><tbody></tbody></table></div>
-        <div class="toolbar"><button class="btn secondary" id="addNewProduct">+ Novo produto</button><button class="btn primary" id="saveProducts">Salvar produtos</button><button class="btn soft" id="resetProducts">Restaurar padrão</button></div>
+        <div style="overflow:auto"><table id="productTable"><thead><tr><th>Produto</th><th>Custo material</th><th>Mão de obra / un.</th><th>Preço venda / un.</th><th>Min. pedido</th><th>Receita de guloseimas</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="toolbar"><button class="btn secondary" id="addNewProduct">➕ Novo produto</button><button class="btn primary" id="saveProducts">💾 Salvar produtos</button><button class="btn soft" id="resetProducts">↺ Restaurar padrão</button></div>
       </div>
     </section>
 
     <section id="config" class="page">
       <div class="grid">
         <div class="card span-6">
-          <h2>Custos operacionais</h2>
+          <h2>Custos das guloseimas</h2>
           <div class="form-grid">
-            <div class="field half"><label>Criação de arte / família (R$)</label><input type="number" step="0.01" id="artFee"></div>
-            <div class="field half"><label>Variações incluídas / cobrança</label><input type="number" step="1" min="1" id="artVariantsIncluded"></div>
-            <div class="field half"><label>Recheio padrão / item (R$)</label><input type="number" step="0.01" id="sweetStandard"></div>
-            <div class="field half"><label>Recheio Pote Mimo / item (R$)</label><input type="number" step="0.01" id="sweetPot"></div>
-            <div class="field half"><label>Reserva operacional (%)</label><input type="number" step="0.1" id="reservePct"></div>
-            <div class="field half"><label>Reserva do lucro para caixa • 90 dias (%)</label><input type="number" step="0.1" id="cashProfitReservePct"></div>
+            <div class="field half"><label>Bala macia / un. (R$)</label><input type="number" step="0.01" id="candySoft"></div>
+            <div class="field half"><label>Chiclete / un. (R$)</label><input type="number" step="0.01" id="candyGum"></div>
+            <div class="field half"><label>Fini / pacote (R$)</label><input type="number" step="0.01" id="candyFini"></div>
+            <div class="field half"><label>Pirulito / un. (R$)</label><input type="number" step="0.01" id="candyLollipop"></div>
+            <div class="field half"><label>Pipoquinha / un. (R$)</label><input type="number" step="0.01" id="candyPopcorn"></div>
+            <div class="field half"><label>Chocolate guarda-chuva / un. (R$)</label><input type="number" step="0.01" id="candyUmbrella"></div>
+            <div class="field half"><label>Bolinha de chocolate / un. (R$)</label><input type="number" step="0.01" id="candyChocBall"></div>
           </div>
+          <div class="recipe-summary">
+            <div><span>Pote Mimo</span><strong id="recipePotCost">R$ 0,00</strong></div>
+            <div><span>Lembrancinha</span><strong id="recipeFavorCost">R$ 0,00</strong></div>
+            <div><span>Cofrinho com guloseimas</span><strong id="recipeCofrinhoCost">R$ 0,00</strong></div>
+          </div>
+          <div class="notice" style="margin-top:14px">As receitas são calculadas automaticamente pelas quantidades padrão definidas no app. A arte/personalização está inclusa e não entra como custo adicional.</div>
         </div>
         <div class="card span-6">
           <h2>Lucro e negociação</h2>
           <div class="form-grid">
+            <div class="field half"><label>Reserva operacional (%)</label><input type="number" step="0.1" id="reservePct"></div>
+            <div class="field half"><label>Reserva do lucro para caixa • 90 dias (%)</label><input type="number" step="0.1" id="cashProfitReservePct"></div>
             <div class="field half"><label>Lucro ideal sobre custo (%)</label><input type="number" step="0.5" id="targetMarkup"></div>
             <div class="field half"><label>Lucro mínimo sobre custo (%)</label><input type="number" step="0.5" id="minMarkup"></div>
             <div class="field half"><label>Desconto padrão (%)</label><input type="number" step="0.5" id="normalDiscount"></div>
             <div class="field half"><label>Limite estratégico de desconto (%)</label><input type="number" step="0.5" id="strategicDiscount"></div>
           </div>
-          <div class="notice" style="margin-top:14px">O app usa o preço de venda de cada produto como referência e confere o custo econômico completo por trás. Meta padrão: 45% de lucro sobre o custo. O desconto começa em 0% e nunca pode levar o lucro abaixo de 30%.</div>
+          <div class="notice" style="margin-top:14px">Meta padrão: 45% de lucro sobre o custo econômico. O piso é 30%. O desconto começa em 0% e nunca pode levar o pedido abaixo do mínimo.</div>
         </div>
         <div class="card span-12">
           <h2>Regra financeira</h2>
@@ -803,13 +888,16 @@ const pct = n => `${Number(n||0).toFixed(1).replace('.',',')}%`;
 const uid = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2,8)}`;
 const money = n => Math.round((Number(n||0)+Number.EPSILON)*100)/100;
 const clone = v => JSON.parse(JSON.stringify(v));
-const DATA_VERSION = 6;
+const DATA_VERSION = 7;
 
 const DEFAULT_SETTINGS = {
-  artFee:10,
-  artVariantsIncluded:2,
-  sweetStandard:1.65,
-  sweetPot:3.20,
+  candySoft:0.14,
+  candyGum:0.21,
+  candyFini:0.99,
+  candyLollipop:0.28,
+  candyPopcorn:0.88,
+  candyUmbrella:0.42,
+  candyChocBall:0.33,
   reservePct:5,
   cashProfitReservePct:30,
   targetMarkup:45,
@@ -818,29 +906,34 @@ const DEFAULT_SETTINGS = {
   strategicDiscount:8
 };
 
+const CANDY_RECIPES = {
+  pot:{candyPopcorn:1,candySoft:4,candyGum:4,candyUmbrella:2,candyChocBall:2,candyLollipop:2,candyFini:1},
+  favor:{candySoft:2,candyGum:2,candyUmbrella:1,candyChocBall:1,candyLollipop:1},
+  cofrinho:{candySoft:2,candyGum:2,candyUmbrella:1,candyChocBall:2,candyLollipop:2,candyFini:1},
+  none:{}
+};
+
 const DEFAULT_PRODUCTS = [
-  {id:'pote3d',name:'Pote Mimo com topo 3D',cost:6.70,labor:3.00,price:19.90,minQty:5,sweet:'pot',hero:true,artFamily:'potes'},
-  {id:'pote',name:'Pote Mimo sem 3D',cost:5.20,labor:3.00,price:16.90,minQty:5,sweet:'pot',artFamily:'potes'},
-  {id:'cofrinho',name:'Pote Cofrinho',cost:4.20,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'potes'},
-  {id:'sacolinha',name:'Sacolinha',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'sacolinha'},
-  {id:'maleta',name:'Maletinha',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'maleta'},
-  {id:'milk',name:'Caixa Milk',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'milk'},
-  {id:'piramide',name:'Pirâmide',cost:4.00,labor:2.50,price:11.90,minQty:10,sweet:'standard',artFamily:'piramide'}
+  {id:'pote3d',name:'Pote Mimo com topo 3D',cost:6.20,labor:3.00,price:22.00,minQty:5,recipe:'pot',defaultSweets:true,hero:true},
+  {id:'pote',name:'Pote Mimo sem 3D',cost:5.20,labor:3.00,price:20.50,minQty:5,recipe:'pot',defaultSweets:true},
+  {id:'cofrinho',name:'Pote Cofrinho',cost:4.20,labor:2.00,price:9.30,minQty:10,recipe:'cofrinho',defaultSweets:false},
+  {id:'sacolinha',name:'Sacolinha',cost:3.00,labor:2.50,price:10.90,minQty:10,recipe:'favor',defaultSweets:true},
+  {id:'maleta',name:'Maletinha',cost:3.00,labor:2.50,price:10.90,minQty:10,recipe:'favor',defaultSweets:true},
+  {id:'milk',name:'Caixa Milk',cost:3.00,labor:2.50,price:10.90,minQty:10,recipe:'favor',defaultSweets:true},
+  {id:'piramide',name:'Pirâmide',cost:3.00,labor:2.50,price:10.90,minQty:10,recipe:'favor',defaultSweets:true}
 ];
 
 const DEFAULT_KITS = [
-  {id:'essencial',name:'Mimo Essencial',price:169,featured:false,desc:'10 lembrancinhas • todos os modelos',items:[
-    {productId:'sacolinha',qty:2},{productId:'maleta',qty:2},{productId:'milk',qty:2},{productId:'piramide',qty:2},{productId:'cofrinho',qty:2}
+  {id:'essencial',name:'Mimo Essencial',price:99,featured:false,desc:'10 lembrancinhas • todos os modelos',items:[
+    {productId:'sacolinha',qty:2},{productId:'maleta',qty:2},{productId:'milk',qty:2},{productId:'piramide',qty:2},{productId:'cofrinho',qty:2,includeSweets:false}
   ]},
-  {id:'festa',name:'Mimo Festa',price:269,featured:true,desc:'15 peças • Pote Mimo 3D já entra aqui',items:[
-    {productId:'sacolinha',qty:2},{productId:'maleta',qty:2},{productId:'milk',qty:2},{productId:'piramide',qty:2},{productId:'cofrinho',qty:2},{productId:'pote3d',qty:5}
+  {id:'festa',name:'Mimo Festa',price:199,featured:true,desc:'15 peças • Pote Mimo 3D já entra aqui',items:[
+    {productId:'sacolinha',qty:2},{productId:'maleta',qty:2},{productId:'milk',qty:2},{productId:'piramide',qty:2},{productId:'cofrinho',qty:2,includeSweets:false},{productId:'pote3d',qty:5}
   ]},
-  {id:'completo',name:'Mimo Completo',price:389,featured:false,desc:'25 peças • composição completa',items:[
-    {productId:'sacolinha',qty:4},{productId:'maleta',qty:4},{productId:'milk',qty:4},{productId:'piramide',qty:4},{productId:'cofrinho',qty:4},{productId:'pote3d',qty:5}
+  {id:'completo',name:'Mimo Completo',price:299,featured:false,desc:'25 peças • composição completa',items:[
+    {productId:'sacolinha',qty:4},{productId:'maleta',qty:4},{productId:'milk',qty:4},{productId:'piramide',qty:4},{productId:'cofrinho',qty:4,includeSweets:false},{productId:'pote3d',qty:5}
   ]}
 ];
-
-const ART_LABELS = {potes:'Pote Mimo + Cofrinho',sacolinha:'Sacolinha',maleta:'Maletinha',milk:'Caixa Milk',piramide:'Pirâmide'};
 
 function migrateDefaults(){
   const oldVersion=Number(localStorage.getItem('mimo_data_version')||0);
@@ -858,57 +951,57 @@ let products = JSON.parse(localStorage.getItem('mimo_products')||'null') || clon
 let kits = JSON.parse(localStorage.getItem('mimo_kits')||'null') || clone(DEFAULT_KITS);
 let orders = JSON.parse(localStorage.getItem('mimo_orders')||'[]');
 let quoteItems = [];
-let artVariations = {};
 let kitOverridePrice = null;
 let editingOrderId = null;
 let currentQuoteStep = 1;
 
 function productById(id){return products.find(p=>p.id===id)}
-function sweetCostFor(p){return p.sweet==='pot'?settings.sweetPot:settings.sweetStandard}
-function artFamilyFor(p){return p.artFamily || p.id}
-function artLabel(family){
-  if(ART_LABELS[family]) return ART_LABELS[family];
-  const p=products.find(x=>artFamilyFor(x)===family); return p?p.name:'Arte personalizada';
+function recipeCost(recipe){
+  const r=CANDY_RECIPES[recipe]||{};
+  return money(Object.entries(r).reduce((sum,[key,qty])=>sum+Number(settings[key]||0)*Number(qty||0),0));
 }
-function usedArtFamilies(){
-  const set=[];
-  quoteItems.forEach(i=>{const p=productById(i.productId);if(p&&i.qty>0){const f=artFamilyFor(p);if(!set.includes(f))set.push(f)}});
-  return set;
+function itemSweetEnabled(item,p){
+  if(!p || p.recipe==='none') return false;
+  if(typeof item.includeSweets==='boolean') return item.includeSweets;
+  return p.defaultSweets!==false;
 }
-function ensureArtDefaults(){usedArtFamilies().forEach(f=>{if(!Number(artVariations[f]))artVariations[f]=2})}
-function artBreakdown(){
-  ensureArtDefaults();
-  const inc=Math.max(1,Number(settings.artVariantsIncluded||2));
-  const fee=Number(settings.artFee||0);
-  const rows=usedArtFamilies().map(f=>{
-    const variations=Math.max(1,Number(artVariations[f]||2));
-    const blocks=Math.ceil(variations/inc);
-    return {family:f,label:artLabel(f),variations,blocks,value:money(blocks*fee)};
-  });
-  return {rows,total:money(rows.reduce((s,r)=>s+r.value,0))};
+function sweetCostForItem(item,p){return itemSweetEnabled(item,p)?recipeCost(p.recipe):0}
+function cofrinhoSweetAddonUnit(){
+  const extraEconomic=recipeCost('cofrinho')*(1+Number(settings.reservePct||0)/100);
+  return money(Math.ceil(extraEconomic*(1+Number(settings.targetMarkup||0)/100)*10)/10);
+}
+function catalogUnitPrice(item,p){
+  return money(Number(p.price||0)+(p.id==='cofrinho'&&itemSweetEnabled(item,p)?cofrinhoSweetAddonUnit():0));
+}
+function renderRecipeSummaries(){
+  const map={recipePotCost:'pot',recipeFavorCost:'favor',recipeCofrinhoCost:'cofrinho'};
+  Object.entries(map).forEach(([id,r])=>{const el=document.getElementById(id);if(el)el.textContent=fmt(recipeCost(r))});
 }
 
 function calc(){
-  let material=0,sweets=0,unitLabor=0,itemSale=0,totalQty=0;
+  let material=0,sweets=0,unitLabor=0,itemSale=0,totalQty=0,cofrinhoSweetQty=0;
   quoteItems.forEach(i=>{
     const p=productById(i.productId); if(!p) return;
+    const sweetUnit=sweetCostForItem(i,p);
     material += Number(p.cost||0)*i.qty;
-    sweets += sweetCostFor(p)*i.qty;
+    sweets += sweetUnit*i.qty;
     unitLabor += Number(p.labor||0)*i.qty;
-    itemSale += Number(p.price||0)*i.qty;
+    itemSale += catalogUnitPrice(i,p)*i.qty;
     totalQty += i.qty;
+    if(p.id==='cofrinho'&&itemSweetEnabled(i,p)) cofrinhoSweetQty += i.qty;
   });
-  const art=artBreakdown();
   const direct=money(material+sweets);
   const reserve=money(direct*(settings.reservePct/100));
-  const productionCost=money(direct+unitLabor+reserve); // base de produção onde protegemos 30%-45%
-  const labor=money(unitLabor+art.total); // remuneração manual + criação de arte
-  const full=money(productionCost+art.total);
-  const idealPriceRaw=money(productionCost*(1+settings.targetMarkup/100)+art.total);
-  const minPrice=money(productionCost*(1+settings.minMarkup/100)+art.total);
-  const catalogPrice=money(itemSale+art.total);
-  const automaticPrice=productionCost>0?money(Math.max(catalogPrice,idealPriceRaw)):0;
-  const base=kitOverridePrice!=null?Number(kitOverridePrice):automaticPrice;
+  const productionCost=money(direct+unitLabor+reserve);
+  const labor=money(unitLabor);
+  const full=productionCost;
+  const idealPriceRaw=money(productionCost*(1+settings.targetMarkup/100));
+  const idealPrice=productionCost>0?money(Math.ceil(idealPriceRaw*10)/10):0;
+  const minPrice=money(productionCost*(1+settings.minMarkup/100));
+  const catalogPrice=money(itemSale);
+  const automaticPrice=productionCost>0?money(Math.max(catalogPrice,idealPrice)):0;
+  const kitSweetAddon=kitOverridePrice!=null?money(cofrinhoSweetQty*cofrinhoSweetAddonUnit()):0;
+  const base=kitOverridePrice!=null?money(Number(kitOverridePrice)+kitSweetAddon):automaticPrice;
   const businessProfit=money(base-full);
   const markup=productionCost>0?businessProfit/productionCost*100:0;
   const saleMargin=base>0?businessProfit/base*100:0;
@@ -917,7 +1010,7 @@ function calc(){
   const cashProfitReserve=money(Math.max(0,businessProfit)*(settings.cashProfitReservePct/100));
   const availableProfit=money(businessProfit-cashProfitReserve);
   const ownerGain=money(labor+availableProfit);
-  return {base,material:money(material),sweets:money(sweets),direct,unitLabor:money(unitLabor),artLabor:art.total,labor,reserve,productionCost,full,idealPrice:idealPriceRaw,minPrice,catalogPrice,businessProfit,markup,saleMargin,safePct,cashProfitReserve,availableProfit,ownerGain,totalQty,artRows:art.rows};
+  return {base,material:money(material),sweets:money(sweets),direct,unitLabor:money(unitLabor),labor,reserve,productionCost,full,idealPrice,minPrice,catalogPrice,businessProfit,markup,saleMargin,safePct,cashProfitReserve,availableProfit,ownerGain,totalQty,cofrinhoSweetQty,kitSweetAddon};
 }
 function discountedCalc(discountPct){
   const c=calc(); const d=Math.max(0,Number(discountPct||0)); const final=money(c.base*(1-d/100));
@@ -930,24 +1023,22 @@ function renderProductSelect(){document.getElementById('productSelect').innerHTM
 function renderQuoteItems(){
   const box=document.getElementById('quoteItems');
   if(!quoteItems.length){box.innerHTML='<div class="muted small" style="padding:12px">Nenhum item adicionado.</div>';return}
-  box.innerHTML=quoteItems.map((i,idx)=>{const p=productById(i.productId);if(!p)return'';return `<div class="product-row"><div><div class="name">${p.name}${p.hero?' <span class="tag hero">produto-herói</span>':''}</div><small>Custo ${fmt(p.cost)} • mão de obra ${fmt(p.labor)} • recheio ${fmt(sweetCostFor(p))} • venda ref. ${fmt(p.price)}</small></div><input type="number" min="1" value="${i.qty}" onchange="updateQty(${idx},this.value)"><div class="unit-price">${fmt(p.price)}/un</div><div class="line-price"><strong>${fmt(Number(p.price||0)*i.qty)}</strong></div><button class="btn danger" onclick="removeItem(${idx})">×</button></div>`}).join('');
+  box.innerHTML=quoteItems.map((i,idx)=>{
+    const p=productById(i.productId);if(!p)return'';
+    const sweetsOn=itemSweetEnabled(i,p),sweetUnit=sweetCostForItem(i,p),baseCost=money(Number(p.cost||0)+Number(p.labor||0)+sweetUnit),unitPrice=catalogUnitPrice(i,p);
+    const sweetControl=p.id==='cofrinho'?`<label class="sweet-toggle"><input type="checkbox" ${sweetsOn?'checked':''} onchange="toggleCofrinhoSweets(${idx},this.checked)"> Adicionar guloseimas</label>`:`<span class="sweet-state">${sweetsOn?'Guloseimas inclusas':'Sem guloseimas'}</span>`;
+    return `<div class="product-row"><div><div class="name">${p.name}${p.hero?' <span class="tag hero">produto-herói</span>':''}</div><small>Material ${fmt(p.cost)} • mão de obra ${fmt(p.labor)} • guloseimas ${fmt(sweetUnit)} • custo-base ${fmt(baseCost)}</small>${sweetControl}</div><input type="number" min="1" value="${i.qty}" onchange="updateQty(${idx},this.value)"><div class="unit-price">${fmt(unitPrice)}/un</div><div class="line-price"><strong>${fmt(unitPrice*i.qty)}</strong></div><button class="btn danger" onclick="removeItem(${idx})">×</button></div>`;
+  }).join('');
 }
-function renderArtConfig(){
-  const box=document.getElementById('artConfig'); ensureArtDefaults(); const families=usedArtFamilies();
-  if(!families.length){box.innerHTML='<div class="muted small">Adicione produtos para o app identificar as famílias de arte.</div>';return}
-  const inc=Math.max(1,Number(settings.artVariantsIncluded||2));
-  box.innerHTML=families.map(f=>{const v=Math.max(1,Number(artVariations[f]||2));const blocks=Math.ceil(v/inc);return `<div class="art-row"><div><strong>${artLabel(f)}</strong><small>${inc} variações por cobrança</small></div><input type="number" min="1" value="${v}" aria-label="Variações ${artLabel(f)}" onchange="setArtVariations('${f}',this.value)"><div class="art-fee">${fmt(blocks*settings.artFee)} • ${blocks} bloco${blocks>1?'s':''}</div></div>`}).join('');
-}
-window.setArtVariations=(family,v)=>{artVariations[family]=Math.max(1,Number(v||1));kitOverridePrice=null;refresh()};
+window.toggleCofrinhoSweets=(idx,on)=>{if(!quoteItems[idx])return;quoteItems[idx].includeSweets=!!on;refresh()};
 window.updateQty=(idx,v)=>{quoteItems[idx].qty=Math.max(1,Number(v||1));kitOverridePrice=null;refresh()};
 window.removeItem=(idx)=>{quoteItems.splice(idx,1);kitOverridePrice=null;refresh()};
 
 function refresh(){
-  renderQuoteItems(); renderArtConfig(); const c=calc();
+  renderQuoteItems(); const c=calc();
   document.getElementById('baseTotal').textContent=fmt(c.base);
   document.getElementById('directCost').textContent=fmt(c.direct);
   document.getElementById('laborCost').textContent=fmt(c.unitLabor);
-  document.getElementById('artCost').textContent=fmt(c.artLabor);
   document.getElementById('reserveCost').textContent=fmt(c.reserve);
   document.getElementById('fullCost').textContent=fmt(c.full);
   document.getElementById('currentMargin').textContent=pct(c.markup);
@@ -962,7 +1053,7 @@ function refresh(){
   updateDiscountOutputs();
   const st=document.getElementById('marginStatus');
   if(!c.base){st.className='status warn';st.textContent='Adicione produtos para calcular.'}
-  else if(c.markup+0.05>=settings.targetMarkup){st.className='status good';st.textContent=`Preço saudável: ${pct(c.markup)} de lucro sobre o custo produtivo, além da remuneração da criação de arte.`}
+  else if(c.markup+0.05>=settings.targetMarkup){st.className='status good';st.textContent=`Preço saudável: ${pct(c.markup)} de lucro sobre o custo produtivo, com todos os custos e a reserva operacional já considerados.`}
   else if(c.markup>=settings.minMarkup){st.className='status warn';st.textContent=`Lucro aceitável: ${pct(c.markup)} sobre o custo produtivo. Meta: ${pct(settings.targetMarkup)}. Evite desconto.`}
   else{st.className='status bad';st.textContent=`Não recomendado: ${pct(c.markup)} sobre o custo produtivo. Mínimo da Mimo: ${pct(settings.minMarkup)}.`}
   const r=document.getElementById('resultMarginLabel'); if(!c.base)r.textContent='Aguardando itens'; else if(c.markup>=settings.targetMarkup)r.textContent='Saudável'; else if(c.markup>=settings.minMarkup)r.textContent='Atenção'; else r.textContent='Não recomendado';
@@ -975,33 +1066,36 @@ function updateDiscountOutputs(){
 }
 function renderQuotePreview(){
   const x=discountedCalc(document.getElementById('discountRange').value||0); const name=document.getElementById('clientName').value.trim()||'cliente'; const theme=document.getElementById('theme').value.trim(); const childName=document.getElementById('childName').value.trim(); const childAge=document.getElementById('childAge').value.trim(); const pers=[childName,childAge].filter(Boolean).join(' • '); const date=document.getElementById('eventDate').value; const delivery=document.getElementById('delivery').value.trim(); const notes=document.getElementById('notes').value.trim();
-  const itemLines=quoteItems.map(i=>{const p=productById(i.productId);return p?`• ${i.qty}x ${p.name}`:''}).filter(Boolean).join('\n');
+  const itemLines=quoteItems.map(i=>{const p=productById(i.productId);if(!p)return'';const suffix=p.id==='cofrinho'?(itemSweetEnabled(i,p)?' • com guloseimas':' • sem guloseimas'):'';return `• ${i.qty}x ${p.name}${suffix}`}).filter(Boolean).join('\n');
+  const anySweets=quoteItems.some(i=>{const p=productById(i.productId);return p&&itemSweetEnabled(i,p)});
+  const anyWithout=quoteItems.some(i=>{const p=productById(i.productId);return p&&!itemSweetEnabled(i,p)});
+  const sweetsLine=anySweets?(anyWithout?'\n✓ Guloseimas inclusas nos itens selecionados':'\n✓ Guloseimas inclusas'):'';
   const discountLine=x.discount>0?`\nValor de tabela: ${fmt(x.base)}\nCondição especial: ${fmt(x.final)} (${pct(x.discount)} de desconto)`: `\nValor: ${fmt(x.final)}`;
   const themeLine=theme?`\nTema: ${theme}`:''; const persLine=pers?`\nPersonalização: ${pers}`:''; const dateLine=date?`\nData da festa: ${new Date(date+'T12:00:00').toLocaleDateString('pt-BR')}`:''; const deliveryLine=delivery?`\nEntrega/retirada: ${delivery}`:'';
-  document.getElementById('quotePreview').textContent=`Oi, ${name}! 🧡\n\nSegue seu orçamento Mimo de Festa:${themeLine}${persLine}${dateLine}\n\n${itemLines||'• Itens a definir'}\n\n✓ Personalizados\n✓ Recheio incluso\n✓ Entregues montados e prontos para a festa${discountLine}\n\nPagamento: ${document.getElementById('paymentCondition').value}\nValidade do orçamento: ${document.getElementById('validity').value} dias${deliveryLine}${notes?`\n\nObservações: ${notes}`:''}\n\nSe estiver tudo certo, me confirma que já seguimos com os próximos detalhes da personalização. ✨`;
+  document.getElementById('quotePreview').textContent=`Oi, ${name}! 🧡\n\nSegue seu orçamento Mimo de Festa:${themeLine}${persLine}${dateLine}\n\n${itemLines||'• Itens a definir'}\n\n✓ Personalizados${sweetsLine}\n✓ Entregues montados e prontos para a festa${discountLine}\n\nPagamento: ${document.getElementById('paymentCondition').value}\nValidade do orçamento: ${document.getElementById('validity').value} dias${deliveryLine}${notes?`\n\nObservações: ${notes}`:''}\n\nSe estiver tudo certo, me confirma que já seguimos com os próximos detalhes da personalização. ✨`;
 }
 
-function kitFinancials(k){const oi=quoteItems,oa=artVariations,oo=kitOverridePrice;quoteItems=clone(k.items);artVariations={};ensureArtDefaults();kitOverridePrice=k.price;const c=calc();quoteItems=oi;artVariations=oa;kitOverridePrice=oo;return c}
+function kitFinancials(k){const oi=quoteItems,oo=kitOverridePrice;quoteItems=clone(k.items);kitOverridePrice=k.price;const c=calc();quoteItems=oi;kitOverridePrice=oo;return c}
 function renderKits(){
-  const grid=document.getElementById('kitGrid'); grid.innerHTML=kits.map(k=>{const lines=k.items.map(i=>{const p=productById(i.productId);return `<li>${i.qty}x ${p?p.name:i.productId}</li>`}).join('');const f=kitFinancials(k);const health=f.markup>=settings.targetMarkup?'lucro saudável':(f.markup>=settings.minMarkup?'lucro aceitável':'rever preço');return `<div class="kit-card ${k.featured?'featured':''}">${k.featured?'<div class="ribbon">RECOMENDADO</div>':''}<span class="tag">${k.desc}</span><h3 style="margin-top:10px">${k.name}</h3><div class="kit-price">${fmt(k.price)}</div><div class="small muted">Interno: ${pct(f.markup)} sobre custo produtivo • ${health}</div><ul>${lines}<li>Recheio incluso</li><li>Personalizado e montado</li></ul><button class="btn ${k.featured?'primary':'secondary'}" onclick="useKit('${k.id}')">Usar este kit</button></div>`}).join('');
+  const grid=document.getElementById('kitGrid'); grid.innerHTML=kits.map(k=>{const lines=k.items.map(i=>{const p=productById(i.productId);return `<li>${i.qty}x ${p?p.name:i.productId}</li>`}).join('');const f=kitFinancials(k);const health=f.markup>=settings.targetMarkup?'lucro saudável':(f.markup>=settings.minMarkup?'lucro aceitável':'rever preço');return `<div class="kit-card ${k.featured?'featured':''}">${k.featured?'<div class="ribbon">RECOMENDADO</div>':''}<span class="tag">${k.desc}</span><h3 style="margin-top:10px">${k.name}</h3><div class="kit-price">${fmt(k.price)}</div><div class="small muted">Interno: ${pct(f.markup)} sobre custo produtivo • ${health}</div><ul>${lines}<li>Guloseimas inclusas nas lembrancinhas e Potes</li><li>Cofrinho: guloseimas opcionais</li><li>Personalizado e montado</li></ul><button class="btn ${k.featured?'primary':'secondary'}" onclick="useKit('${k.id}')">Usar este kit</button></div>`}).join('');
 }
-window.useKit=(id)=>{const k=kits.find(x=>x.id===id);if(!k)return;quoteItems=clone(k.items);artVariations={};ensureArtDefaults();kitOverridePrice=k.price;editingOrderId=null;openPage('orcamento');document.getElementById('discountRange').value=0;refresh();showQuoteStep(2)};
+window.useKit=(id)=>{const k=kits.find(x=>x.id===id);if(!k)return;quoteItems=clone(k.items);kitOverridePrice=k.price;editingOrderId=null;openPage('orcamento');document.getElementById('discountRange').value=0;refresh();showQuoteStep(2)};
 window.goToCustomQuote=()=>{resetQuote();openPage('orcamento');showQuoteStep(2);document.getElementById('productSelect').focus()};
 
 function renderProductsTable(){
-  document.querySelector('#productTable tbody').innerHTML=products.map((p,idx)=>`<tr><td><input data-key="name" data-idx="${idx}" value="${p.name}"></td><td><input type="number" step="0.01" data-key="cost" data-idx="${idx}" value="${p.cost}"></td><td><input type="number" step="0.01" data-key="labor" data-idx="${idx}" value="${p.labor}"></td><td><input type="number" step="0.01" data-key="price" data-idx="${idx}" value="${Number(p.price||0).toFixed(2)}"></td><td><input type="number" step="1" data-key="minQty" data-idx="${idx}" value="${p.minQty}"></td><td><select data-key="sweet" data-idx="${idx}"><option value="standard" ${p.sweet==='standard'?'selected':''}>Padrão</option><option value="pot" ${p.sweet==='pot'?'selected':''}>Pote Mimo</option></select></td><td><button class="btn danger" onclick="deleteProduct(${idx})">×</button></td></tr>`).join('');
+  document.querySelector('#productTable tbody').innerHTML=products.map((p,idx)=>`<tr><td><input data-key="name" data-idx="${idx}" value="${p.name}"></td><td><input type="number" step="0.01" data-key="cost" data-idx="${idx}" value="${p.cost}"></td><td><input type="number" step="0.01" data-key="labor" data-idx="${idx}" value="${p.labor}"></td><td><input type="number" step="0.01" data-key="price" data-idx="${idx}" value="${Number(p.price||0).toFixed(2)}"></td><td><input type="number" step="1" data-key="minQty" data-idx="${idx}" value="${p.minQty}"></td><td><select data-key="recipe" data-idx="${idx}"><option value="pot" ${p.recipe==='pot'?'selected':''}>Pote Mimo</option><option value="favor" ${p.recipe==='favor'?'selected':''}>Lembrancinha</option><option value="cofrinho" ${p.recipe==='cofrinho'?'selected':''}>Cofrinho</option><option value="none" ${p.recipe==='none'?'selected':''}>Sem guloseimas</option></select></td><td><button class="btn danger" onclick="deleteProduct(${idx})">×</button></td></tr>`).join('');
 }
 window.deleteProduct=(idx)=>{if(confirm('Remover este produto?')){products.splice(idx,1);renderProductsTable();renderProductSelect()}};
-function saveProducts(){document.querySelectorAll('#productTable [data-key]').forEach(el=>{const i=Number(el.dataset.idx),k=el.dataset.key;if(!products[i])return;products[i][k]=['name','sweet'].includes(k)?el.value:Number(el.value||0)});localStorage.setItem('mimo_products',JSON.stringify(products));renderProductSelect();renderKits();refresh();alert('Produtos salvos.')}
-function loadSettingsUI(){Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)el.value=settings[k]});document.getElementById('kpiTarget').textContent=pct(settings.targetMarkup);document.getElementById('kpiMin').textContent=pct(settings.minMarkup);document.getElementById('kpiCash').textContent=pct(settings.cashProfitReservePct)}
-function saveSettings(){Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)settings[k]=Number(el.value||0)});if(settings.minMarkup>settings.targetMarkup){alert('O lucro mínimo não pode ser maior que o lucro ideal.');return}if(settings.artVariantsIncluded<1)settings.artVariantsIncluded=1;localStorage.setItem('mimo_settings',JSON.stringify(settings));loadSettingsUI();renderKits();refresh();alert('Configurações salvas.')}
+function saveProducts(){document.querySelectorAll('#productTable [data-key]').forEach(el=>{const i=Number(el.dataset.idx),k=el.dataset.key;if(!products[i])return;products[i][k]=['name','recipe'].includes(k)?el.value:Number(el.value||0)});localStorage.setItem('mimo_products',JSON.stringify(products));renderProductSelect();renderKits();refresh();alert('Produtos salvos.')}
+function loadSettingsUI(){Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)el.value=settings[k]});document.getElementById('kpiTarget').textContent=pct(settings.targetMarkup);document.getElementById('kpiMin').textContent=pct(settings.minMarkup);document.getElementById('kpiCash').textContent=pct(settings.cashProfitReservePct);renderRecipeSummaries()}
+function saveSettings(){Object.keys(DEFAULT_SETTINGS).forEach(k=>{const el=document.getElementById(k);if(el)settings[k]=Number(el.value||0)});if(settings.minMarkup>settings.targetMarkup){alert('O lucro mínimo não pode ser maior que o lucro ideal.');return}localStorage.setItem('mimo_settings',JSON.stringify(settings));loadSettingsUI();renderKits();refresh();alert('Configurações salvas.')}
 
 function snapshotCurrent(status){
   const x=discountedCalc(document.getElementById('discountRange').value||0); return {
     id:editingOrderId||uid(),status,createdAt:editingOrderId?(orders.find(o=>o.id===editingOrderId)?.createdAt||new Date().toISOString()):new Date().toISOString(),updatedAt:new Date().toISOString(),closedAt:status==='sale'?(orders.find(o=>o.id===editingOrderId)?.closedAt||new Date().toISOString()):null,
     client:{name:document.getElementById('clientName').value.trim(),phone:document.getElementById('clientPhone').value.trim(),eventDate:document.getElementById('eventDate').value,theme:document.getElementById('theme').value.trim(),childName:document.getElementById('childName').value.trim(),childAge:document.getElementById('childAge').value.trim()},
-    quoteItems:clone(quoteItems),artVariations:clone(artVariations),kitOverridePrice,discountPct:Number(document.getElementById('discountRange').value||0),paymentCondition:document.getElementById('paymentCondition').value,validity:document.getElementById('validity').value,delivery:document.getElementById('delivery').value.trim(),notes:document.getElementById('notes').value.trim(),
-    snapshot:{final:x.final,base:x.base,direct:x.direct,material:x.material,sweets:x.sweets,unitLabor:x.unitLabor,artLabor:x.artLabor,labor:x.labor,reserve:x.reserve,productionCost:x.productionCost,full:x.full,businessProfit:x.businessProfit,markup:x.markup,saleMargin:x.saleMargin,cashProfitReserve:x.cashProfitReserve,availableProfit:x.availableProfit,ownerGain:x.ownerGain,totalQty:x.totalQty}
+    quoteItems:clone(quoteItems),kitOverridePrice,discountPct:Number(document.getElementById('discountRange').value||0),paymentCondition:document.getElementById('paymentCondition').value,validity:document.getElementById('validity').value,delivery:document.getElementById('delivery').value.trim(),notes:document.getElementById('notes').value.trim(),
+    snapshot:{final:x.final,base:x.base,direct:x.direct,material:x.material,sweets:x.sweets,unitLabor:x.unitLabor,labor:x.labor,reserve:x.reserve,productionCost:x.productionCost,full:x.full,businessProfit:x.businessProfit,markup:x.markup,saleMargin:x.saleMargin,cashProfitReserve:x.cashProfitReserve,availableProfit:x.availableProfit,ownerGain:x.ownerGain,totalQty:x.totalQty}
   }
 }
 function persistOrders(){localStorage.setItem('mimo_orders',JSON.stringify(orders));renderOrders();renderFinance()}
@@ -1010,11 +1104,11 @@ function saveCurrentOrder(status){
   const order=snapshotCurrent(status); const idx=orders.findIndex(o=>o.id===order.id); if(idx>=0)orders[idx]=order;else orders.unshift(order); editingOrderId=order.id; persistOrders(); updateEditingNotice(); alert(status==='sale'?'Venda confirmada e painel atualizado.':'Orçamento salvo neste aparelho.');
 }
 function resetQuote(){
-  editingOrderId=null;quoteItems=[];artVariations={};kitOverridePrice=null;document.getElementById('discountRange').value=0;['clientName','clientPhone','theme','eventDate','childName','childAge','delivery','notes'].forEach(id=>document.getElementById(id).value='');document.getElementById('paymentCondition').selectedIndex=0;document.getElementById('validity').value='3';updateEditingNotice();refresh();showQuoteStep(1);
+  editingOrderId=null;quoteItems=[];kitOverridePrice=null;document.getElementById('discountRange').value=0;['clientName','clientPhone','theme','eventDate','childName','childAge','delivery','notes'].forEach(id=>document.getElementById(id).value='');document.getElementById('paymentCondition').selectedIndex=0;document.getElementById('validity').value='3';updateEditingNotice();refresh();showQuoteStep(1);
 }
 function updateEditingNotice(){const e=document.getElementById('editingNotice');if(editingOrderId){const o=orders.find(x=>x.id===editingOrderId);e.style.display='block';e.textContent=`Editando ${o?.status==='sale'?'venda':'orçamento'} salvo • alterações só entram no histórico quando você salvar novamente.`}else{e.style.display='none';e.textContent=''}}
 function loadOrder(id){
-  const o=orders.find(x=>x.id===id);if(!o)return;editingOrderId=id;quoteItems=clone(o.quoteItems||[]);artVariations=clone(o.artVariations||{});kitOverridePrice=o.kitOverridePrice??null;const c=o.client||{};document.getElementById('clientName').value=c.name||'';document.getElementById('clientPhone').value=c.phone||'';document.getElementById('eventDate').value=c.eventDate||'';document.getElementById('theme').value=c.theme||'';document.getElementById('childName').value=c.childName||'';document.getElementById('childAge').value=c.childAge||'';document.getElementById('delivery').value=o.delivery||'';document.getElementById('notes').value=o.notes||'';document.getElementById('paymentCondition').value=o.paymentCondition||document.getElementById('paymentCondition').options[0].value;document.getElementById('validity').value=String(o.validity||3);document.getElementById('discountRange').value=Number(o.discountPct||0);updateEditingNotice();openPage('orcamento');refresh();showQuoteStep(4)
+  const o=orders.find(x=>x.id===id);if(!o)return;editingOrderId=id;quoteItems=clone(o.quoteItems||[]);kitOverridePrice=o.kitOverridePrice??null;const c=o.client||{};document.getElementById('clientName').value=c.name||'';document.getElementById('clientPhone').value=c.phone||'';document.getElementById('eventDate').value=c.eventDate||'';document.getElementById('theme').value=c.theme||'';document.getElementById('childName').value=c.childName||'';document.getElementById('childAge').value=c.childAge||'';document.getElementById('delivery').value=o.delivery||'';document.getElementById('notes').value=o.notes||'';document.getElementById('paymentCondition').value=o.paymentCondition||document.getElementById('paymentCondition').options[0].value;document.getElementById('validity').value=String(o.validity||3);document.getElementById('discountRange').value=Number(o.discountPct||0);updateEditingNotice();openPage('orcamento');refresh();showQuoteStep(4)
 }
 window.loadOrder=loadOrder;
 window.deleteOrder=(id)=>{if(!confirm('Excluir este registro? Essa ação também remove a venda do painel financeiro.'))return;orders=orders.filter(o=>o.id!==id);if(editingOrderId===id)resetQuote();persistOrders()};
@@ -1035,7 +1129,7 @@ function renderFinance(){
 }
 
 function showQuoteStep(step){currentQuoteStep=Math.max(1,Math.min(4,Number(step)||1));document.querySelectorAll('.quote-step').forEach(el=>el.classList.toggle('active',Number(el.dataset.step)===currentQuoteStep));document.querySelectorAll('.step-tab').forEach(el=>{const n=Number(el.dataset.stepTarget);el.classList.toggle('active',n===currentQuoteStep);el.classList.toggle('done',n<currentQuoteStep)});window.scrollTo({top:0,behavior:'smooth'});if(currentQuoteStep===4)refresh()}
-const pageMeta={orcamento:['Novo orçamento','Monte o pedido e veja preço, lucro e negociação segura.'],pedidos:['Pedidos e orçamentos','Edite, corrija, confirme ou exclua registros salvos neste aparelho.'],financeiro:['Financeiro','Acompanhe faturamento, gasto, lucro, ganho e clientes por mês.'],kits:['Kits fechados','Três escolhas públicas e um caminho personalizado para pedidos maiores.'],produtos:['Produtos, custos e venda','Controle separado do custo real e do preço cobrado por cada item.'],config:['Configurações financeiras','Ajuste artes, recheios, reservas, lucro sobre custo e regras de desconto.']};
+const pageMeta={orcamento:['Novo orçamento','Monte o pedido e veja preço, lucro e negociação segura.'],pedidos:['Pedidos e orçamentos','Edite, corrija, confirme ou exclua registros salvos neste aparelho.'],financeiro:['Financeiro','Acompanhe faturamento, gasto, lucro, ganho e clientes por mês.'],kits:['Kits fechados','Três escolhas públicas e um caminho personalizado para pedidos maiores.'],produtos:['Produtos, custos e venda','Controle separado do custo real e do preço cobrado por cada item.'],config:['Configurações financeiras','Ajuste guloseimas, reservas, lucro sobre custo e regras de desconto.']};
 function openPage(page){const btn=document.querySelector(`.nav-btn[data-page="${page}"]`);if(!btn)return;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=pageMeta[page][0];document.getElementById('pageSubtitle').textContent=pageMeta[page][1];document.getElementById('stickySummary').classList.toggle('hidden',page!=='orcamento');if(page==='pedidos')renderOrders();if(page==='financeiro')renderFinance()}
 
 document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>openPage(btn.dataset.page)));
@@ -1043,15 +1137,15 @@ document.querySelectorAll('[data-step-target]').forEach(btn=>btn.addEventListene
 document.querySelectorAll('.next-step').forEach(btn=>btn.addEventListener('click',()=>showQuoteStep(btn.dataset.nextStep)));
 document.querySelectorAll('.prev-step').forEach(btn=>btn.addEventListener('click',()=>showQuoteStep(btn.dataset.prevStep)));
 document.getElementById('stickyResultBtn').addEventListener('click',()=>showQuoteStep(4));
-document.getElementById('addProduct').addEventListener('click',()=>{const id=document.getElementById('productSelect').value,p=productById(id),entered=Math.max(1,Number(document.getElementById('qtyAdd').value||1)),q=p?Math.max(entered,Number(p.minQty||1)):entered;if(p&&entered<q)alert(`Quantidade ajustada para o mínimo de ${q} unidades de ${p.name}.`);const ex=quoteItems.find(i=>i.productId===id);if(ex)ex.qty+=q;else quoteItems.push({productId:id,qty:q});kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
-document.getElementById('clearItems').addEventListener('click',()=>{quoteItems=[];artVariations={};kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
+document.getElementById('addProduct').addEventListener('click',()=>{const id=document.getElementById('productSelect').value,p=productById(id),entered=Math.max(1,Number(document.getElementById('qtyAdd').value||1)),q=p?Math.max(entered,Number(p.minQty||1)):entered;if(p&&entered<q)alert(`Quantidade ajustada para o mínimo de ${q} unidades de ${p.name}.`);const ex=quoteItems.find(i=>i.productId===id);if(ex)ex.qty+=q;else quoteItems.push({productId:id,qty:q,includeSweets:p?p.defaultSweets!==false:false});kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
+document.getElementById('clearItems').addEventListener('click',()=>{quoteItems=[];kitOverridePrice=null;document.getElementById('discountRange').value=0;refresh()});
 document.getElementById('discountRange').addEventListener('input',updateDiscountOutputs);
 ['clientName','clientPhone','theme','eventDate','childName','childAge','delivery','notes','paymentCondition','validity'].forEach(id=>document.getElementById(id).addEventListener('input',renderQuotePreview));
 document.getElementById('copyQuote').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('quotePreview').textContent);const b=document.getElementById('copyQuote'),old=b.textContent;b.textContent='Copiado ✓';setTimeout(()=>b.textContent=old,1500)}catch(e){alert('Não foi possível copiar automaticamente. Selecione o texto e copie manualmente.')}});
 document.getElementById('openWhatsApp').addEventListener('click',()=>{const phone=document.getElementById('clientPhone').value.replace(/\D/g,''),normalized=phone?((phone.startsWith('55')?'':'55')+phone):'5531984912875',msg=encodeURIComponent(document.getElementById('quotePreview').textContent);window.open(`https://wa.me/${normalized}?text=${msg}`,'_blank')});
 document.getElementById('saveQuote').addEventListener('click',()=>saveCurrentOrder('quote'));document.getElementById('saveSale').addEventListener('click',()=>saveCurrentOrder('sale'));document.getElementById('newQuote').addEventListener('click',resetQuote);document.getElementById('ordersNewQuote').addEventListener('click',()=>{resetQuote();openPage('orcamento')});
 document.getElementById('orderSearch').addEventListener('input',renderOrders);document.getElementById('orderStatusFilter').addEventListener('change',renderOrders);document.getElementById('financeMonth').addEventListener('change',renderFinance);
-document.getElementById('saveProducts').addEventListener('click',saveProducts);document.getElementById('addNewProduct').addEventListener('click',()=>{const id=uid();products.push({id,name:'Novo produto',cost:0,labor:2.50,price:0,minQty:5,sweet:'standard',artFamily:id});renderProductsTable()});document.getElementById('resetProducts').addEventListener('click',()=>{if(confirm('Restaurar produtos padrão?')){products=clone(DEFAULT_PRODUCTS);localStorage.setItem('mimo_products',JSON.stringify(products));renderProductsTable();renderProductSelect();renderKits();refresh()}});
+document.getElementById('saveProducts').addEventListener('click',saveProducts);document.getElementById('addNewProduct').addEventListener('click',()=>{const id=uid();products.push({id,name:'Novo produto',cost:0,labor:2.50,price:0,minQty:5,recipe:'favor',defaultSweets:true});renderProductsTable()});document.getElementById('resetProducts').addEventListener('click',()=>{if(confirm('Restaurar produtos padrão?')){products=clone(DEFAULT_PRODUCTS);localStorage.setItem('mimo_products',JSON.stringify(products));renderProductsTable();renderProductSelect();renderKits();refresh()}});
 document.getElementById('saveSettings').addEventListener('click',saveSettings);document.getElementById('resetSettings').addEventListener('click',()=>{if(confirm('Restaurar configurações padrão?')){settings=clone(DEFAULT_SETTINGS);localStorage.setItem('mimo_settings',JSON.stringify(settings));loadSettingsUI();renderKits();refresh()}});
 
 renderProductSelect();renderProductsTable();loadSettingsUI();renderKits();renderOrders();renderFinance();updateEditingNotice();refresh();
