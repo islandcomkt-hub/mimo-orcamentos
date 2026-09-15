@@ -1,16 +1,14 @@
-# Mimo Orçamentos Android v1.3.0
+# Mimo V17
 
-Versão com custos exatos de guloseimas, perfis N1/N2/N3, kits dinâmicos, parcelamento configurável, painel financeiro local e edição/remoção de pedidos.
+Versão Android: 1.15.0 (versionCode 16).
 
-Build: GitHub Actions > Build APK.
+Novidade principal: microseção **Prospecção de parceiros** dentro de Atendimento, com CRM local, pipeline, metas diárias, cadência multicanal, scripts e indicadores.
 
+Os dados continuam armazenados localmente no aparelho.
 
-## V7
-Precificação por margem real sobre venda (N1 35%, N2 40%, N3 45%) com explicação matemática visual.
-
-
-## V12
-Navegação superior em grade 4x2, mantendo os oito módulos visíveis com nomes completos e sem truncamento.
-
-
-V13 / 1.10.0: slide sincronizado com o gesto e launcher icon adaptativo.
+## V18 — 1.16.0
+- Novo ícone do aplicativo usando o símbolo Mimo em fundo branco enviado como referência.
+- Animação de abertura em vídeo (`app/src/main/assets/mimo_intro.mp4`) com fade rápido para o aplicativo.
+- Modo Claro / Escuro em Configurações, persistido localmente.
+- Paleta escura revisada para contraste de texto, campos, tabelas, cards, Atendimento, Follow-ups e Prospecção.
+- Barra de status e navegação do Android acompanham o tema quando disponível.
